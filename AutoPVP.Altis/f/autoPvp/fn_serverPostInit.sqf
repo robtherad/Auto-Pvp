@@ -1,4 +1,7 @@
-// Runs on server at postInit
+/*
+Initializes settings related to autoPvp and starts related logic loop.
+The PFH finds a suitable location for a battle to take place and then makes calls to other functions.
+*/
 if (!isServer) exitWith {};
 
 private _worldList = [
@@ -27,7 +30,7 @@ bc_auto_spotFound = false;
     if (count bc_auto_teamStarts isEqualTo 2) then {
         [_handle] call CBA_fnc_removePerFrameHandler;
         
-        bc_auto_spotFound = true;
+        call bc_fnc_foundPositions;
         bc_auto_markerArray = [];
         
         bc_auto_flagpole = createVehicle ["Flag_White_F", bc_auto_centerLocation, [], 0, "NONE"];
@@ -56,16 +59,3 @@ bc_auto_spotFound = false;
         // END DEBUG
     };
 }, 0, []] call CBA_fnc_addPerFrameHandler;
-
-// Add a PFH that will wait for the random battlefield to be selected
-[{
-    params ["_args","_handle"];
-
-    if (bc_auto_spotFound) then {
-        call bc_fnc_foundPositions;
-        
-        [_handle] call CBA_fnc_removePerFrameHandler;
-    };
-}, 0, []] call CBA_fnc_addPerFrameHandler;
-
-// TODO: Come up with a way to black out player screens during safestart time but still let them view the map OR find an easy way to split teams up during the briefing screen

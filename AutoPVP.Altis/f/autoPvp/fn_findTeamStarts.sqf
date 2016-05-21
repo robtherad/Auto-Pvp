@@ -1,7 +1,12 @@
 // Find possible starting locations for teams. Returns empty array if it fails. Returns array with two sets of location coordinates if it works.
+/*
+Finds two locations for teams to start. Locations must be fairly flat, on land, and not within view of each other.
+Returns: An array of suitable locations for teams to start at. Can return 0, 1, or 2 locations at a time.
+*/
 
 // Scale the amount of generated positions with the size of the mission area
 private _positionGenerations = 32;
+
 
 // Get a number of positions surrounding the mission's center that could be useful as starting locations
 private _testPositionArray = [];

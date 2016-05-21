@@ -1,4 +1,6 @@
-// Randomly generate a position on the map that's somewhat flat and not on the water.
+/*
+Randomly generate coordinates until one is found that is reasonably flat and not on water.
+*/
 private _randomCordX = random (bc_auto_worldSizeArray select 0);
 private _randomCordY = random (bc_auto_worldSizeArray select 1);
 private _cordArray = [_randomCordX, _randomCordY, 0];

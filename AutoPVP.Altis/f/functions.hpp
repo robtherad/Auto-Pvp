@@ -46,4 +46,10 @@ class autoPvp {
     class serverPostInit{postInit = 1};
     class chooseRandomCenter{};
     class findTeamStarts{};
+    class foundPositions{};
+};
+class autoPvpSector {
+    file = "f\autoPvp\sector";
+    class createSector{};
+    class watchSector{};
 };

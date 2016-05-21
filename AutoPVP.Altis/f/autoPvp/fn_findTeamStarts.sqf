@@ -1,8 +1,4 @@
 // Find possible starting locations for teams. Returns empty array if it fails. Returns array with two sets of location coordinates if it works.
-params [
-    ["_centerPoint", [30000, 30000, 0], [[]], 3],
-    ["_centerDistance", 1000, [0]]
-];
 
 // Scale the amount of generated positions with the size of the mission area
 private _positionGenerations = 64;
@@ -11,7 +7,7 @@ private _positionGenerations = 64;
 private _testPositionArray = [];
 for "_i" from 1 to _positionGenerations do {
     private _dir = (360 / _positionGenerations) * _i;
-    _testPositionArray pushBack (_centerPoint getPos [_centerDistance,_dir]);
+    _testPositionArray pushBack (bc_auto_centerLocation getPos [bc_auto_missionScale,_dir]);
 };
 
 // Filter out positions that wouldn't make good starting areas
@@ -28,9 +24,10 @@ if (count _goodPositionArray > 2) then {
     {
         private _returnCount = count _return;
         if (_returnCount isEqualTo 1) then {
+            private _teamOnePos = _return select 0;
             // Make sure distance between two starts is at least the distance from center point to one of the starts. Make sure the starting locations can't see each other.
-            if ( _x distance (_return select 0) > _centerDistance*1.5 ) then {
-                if ( ([objNull, "VIEW"] checkVisibility [_x, _return select 0]) < .1) then {
+            if ( _x distance _teamOnePos > bc_auto_missionScale*1.5 ) then {
+                if ( ([objNull, "VIEW"] checkVisibility [ [_x select 0, _x select 1, (_x select 2) + 20], [_teamOnePos select 0, _teamOnePos select 1, (_teamOnePos select 2) + 20] ]) < .1) then {
                     _return pushBack _x;
                 };
             };

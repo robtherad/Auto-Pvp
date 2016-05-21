@@ -1,7 +1,7 @@
 // Find possible starting locations for teams. Returns empty array if it fails. Returns array with two sets of location coordinates if it works.
 
 // Scale the amount of generated positions with the size of the mission area
-private _positionGenerations = 64;
+private _positionGenerations = 32;
 
 // Get a number of positions surrounding the mission's center that could be useful as starting locations
 private _testPositionArray = [];
@@ -21,8 +21,10 @@ private _goodPositionArray = [];
 // If there aren't at least two possible team starting locations then return an empty array to signify failure
 private _return = [];
 if (count _goodPositionArray > 2) then {
-    {
+    _goodPositionArray = [_goodPositionArray] call CBA_fnc_shuffle;
+    { 
         private _returnCount = count _return;
+        if (_returnCount isEqualTo 2) exitWith {};
         if (_returnCount isEqualTo 1) then {
             private _teamOnePos = _return select 0;
             // Make sure distance between two starts is at least the distance from center point to one of the starts. Make sure the starting locations can't see each other.

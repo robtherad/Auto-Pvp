@@ -8,14 +8,18 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=2;
+		nextID=3;
+	};
+	class MarkerIDProvider
+	{
+		nextID=1;
 	};
 	class Camera
 	{
 		pos[]={22235.146,30.730963,11022.484};
-		dir[]={-0.32161647,-0.2333369,0.91766918};
-		up[]={-0.077175476,0.97239572,0.22020498};
-		aside[]={0.94372106,-1.5759724e-008,0.33074772};
+		dir[]={-0.4102602,-0.28785035,0.86534917};
+		up[]={-0.12331289,0.9576748,0.26010001};
+		aside[]={0.90359443,-6.6822395e-008,0.42839313};
 	};
 };
 binarizationWanted=0;
@@ -51,7 +55,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=1;
+		items=2;
 		class Item0
 		{
 			dataType="Group";
@@ -82,6 +86,14 @@ class Mission
 			};
 			id=0;
 			atlOffset=0.00064849854;
+		};
+		class Item1
+		{
+			dataType="Marker";
+			position[]={22223.785,20.774103,11058.974};
+			name="placeMark_Blue";
+			type="Empty";
+			id=2;
 		};
 	};
 };

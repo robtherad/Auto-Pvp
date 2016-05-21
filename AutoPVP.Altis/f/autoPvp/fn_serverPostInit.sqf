@@ -35,15 +35,14 @@ bc_auto_spotFound = false;
         // DEBUG - Place markers at all 3 points
         {
             _markerName = format ["markerName_%1",_forEachIndex];
-            diag_log format["Auto Pvp DEBUG: %1",_x];
             _markerstr = createMarker [_markerName, [_x select 0, _x select 1]];
             _markerstr setMarkerShape "ICON";
             _markerstr setMarkerType "hd_dot";
-            _markerstr setMarkerText str(_forEachIndex);
+            // _markerstr setMarkerText str(_forEachIndex);
             
             bc_auto_markerArray pushBack _markerName;
             
-            player setPos _x;
+            // player setPos _x;
         } forEach bc_auto_teamStarts + [bc_auto_centerLocation];
         
         // Create circle around AO

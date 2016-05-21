@@ -12,4 +12,8 @@
 
 call bc_fnc_createSector;
 
-publicVariable "bc_auto_teamStarts"; // The randomstart script will be waiting for this the be defined. That script will handle moving all the players to the correct positions.
+// Send info to clients for use in the placement scripts.
+publicVariable "bc_auto_teamStarts";
+publicVariable "bc_auto_centralLocation";
+bc_auto_foundPositions = true;
+publicVariable "bc_auto_foundPositions";

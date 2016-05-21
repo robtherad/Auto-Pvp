@@ -10,6 +10,8 @@ switch (_this select 0) do
     //Turn safety on
     case true:
     {
+        bc_safeStartEnabled = true;
+    
         // Delete bullets from fired weapons
         if (isNil "f_eh_safetyMan") then {
             f_eh_safetyMan = player addEventHandler["Fired", {deletevehicle (_this select 6);}];
@@ -32,8 +34,9 @@ switch (_this select 0) do
     //Turn safety off
     case false;
     default {
-
-        //Allow player to fire weapons
+        bc_safeStartEnabled = false;
+        
+        // Allow player to fire weapons
         if !(isNil "f_eh_safetyMan") then {
             player removeEventhandler ["Fired", f_eh_safetyMan];
             f_eh_safetyMan = nil;

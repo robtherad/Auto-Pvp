@@ -53,3 +53,8 @@ class autoPvpSector {
     class createSector{};
     class watchSector{};
 };
+class autoPvpplace {
+    file = "f\autoPvp\placement";
+    class placeMove{};
+    class placeWait{postInit = 1;};
+};

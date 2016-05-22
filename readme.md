@@ -39,13 +39,9 @@ There can be capture progress bars shown (toggleable) at the bottom right of the
 
 ### Parameter Ideas
 
-AO Size Modifier:   Small (50%), Normal (100%), Large (150%)
-Time Limits:    Very Short (50%), Short (75%), Normal (100%), Long (125%), Very Long (150%)
-Show Enemy Starting Zones to:   Everybody, Nobody, OPFOR Only, BLUFOR Only
-
-Sector Capture Timer
-Sector Control Style?
-Sector Capture Progress Style?
+* AO Size Modifier:   Small (50%), Normal (100%), Large (150%)
+* Time Limits:    Very Short (50%), Short (75%), Normal (100%), Long (125%), Very Long (150%)
+* Show Enemy Starting Zones to:   Everybody, Nobody, OPFOR Only, BLUFOR Only
 
 ### Future Goals
 
@@ -53,3 +49,4 @@ Sector Capture Progress Style?
 * Option to provide a side objective (Destroy cache, destroy static vehicle, destroy tower, second cap point, etc)
 * Option to allow assets (HMG Pickup Trucks, HMMVs, Transport Trucks, Littlebirds, etc)
 * Allow admin to re-roll starting positions through briefing option?
+* Save last used battlefield and add an option to reuse it on next mission start.

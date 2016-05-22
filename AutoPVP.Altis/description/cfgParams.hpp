@@ -6,6 +6,28 @@ class Params {
         default = 10;
         code = "f_param_mission_timer = %1";
     };
+    
+    // Auto PVP Mission Specific
+    class bc_auto_timeLimitMod {
+        title = "Time Limit Modifier:";
+        values[] = {0,1,2,3,4};
+        texts[] = {"Very Short (50%)", "Short (75%)", "Normal (100%)", "Long (125%)", "Very Long (150%)"};
+        default = 2;
+    };
+    class bc_auto_AOSizeMod {
+        title = "Battlefield Size Modifier:";
+        values[] = {0,1,2,3,4};
+        texts[] = {"Very Small (50%)", "Small (75%)", "Normal (100%)", "Large (125%)", "Very Large (150%)"};
+        default = 2;
+    };
+    class bc_showOtherTeamStart {
+        title = "Show Enemy Starting Location to:";
+        values[] = {0,1,2,3};
+        texts[] = {"Nobody","BLUFOR Only","OPFOR Only","Everybody"};
+        default = 0;
+    };
+    
+    // Generic Loadout Stuff
     class s_loadout_radio {
         title = "Radio Deployment:";
         values[] = {0,1,2,3};
@@ -23,12 +45,6 @@ class Params {
         values[] = {0,1,2,3};
         texts[] = {"All Players (default)","Team Leaders and above","Squad Leaders and above","No GPS"};
         default = 0;
-    };
-    class mission_runtime {
-        title = "Mission Time Limit (Doesn't include safestart time):";
-        values[] = {15,30,45,60};
-        texts[] = {"15 minutes","30 minutes","45 minutes (default)","60 minutes"};
-        default = 45;
     };
     class s_gps_markers {
         title = "GPS Map Markers:";

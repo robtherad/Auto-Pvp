@@ -3,7 +3,7 @@
 //=====================================================================================
 
 //Exit if server
-if(isDedicated) exitwith {};
+if (!hasInterface) exitwith {};
 
 switch (_this select 0) do
 {
@@ -34,8 +34,6 @@ switch (_this select 0) do
     //Turn safety off
     case false;
     default {
-        bc_safeStartEnabled = false;
-        
         // Allow player to fire weapons
         if !(isNil "f_eh_safetyMan") then {
             player removeEventhandler ["Fired", f_eh_safetyMan];
@@ -52,8 +50,18 @@ switch (_this select 0) do
             };
             player setVariable ["f_var_safetyVeh",nil];
         };
-
+        
         // Make player vulnerable
         player allowDamage true;
+        bc_safeStartEnabled = false;
+        
+        // AUTO PVP CODE
+            titleText ["Transporting to starting location...\n\nGood luck.", "BLACK FADED", 0.3];
+            // Returns a position that is a specified distance and compass direction from the passed position or object.
+            private _newPos = bc_auto_ownTeamStart getPos [bc_rs_distance, bc_rs_direction];
+
+            // Move player
+            player setPos [(_newPos select 0), (_newPos select 1)];
+            player setDir (bc_auto_ownTeamStart getDir bc_auto_centerLocation);
     };
 };

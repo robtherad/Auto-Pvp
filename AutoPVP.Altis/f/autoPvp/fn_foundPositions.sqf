@@ -16,6 +16,13 @@ Activates other functions that need to happen after the battlefield has been dec
 
 // Send info to clients for use in the placement scripts.
 // TODO: Implement system that teleports players into their start zone, with their squads, only after the mission starts. Before that they will be able to move around a staging area and plan/discuss/etc.
+
+// Send pre-start location information
+publicVariable "bc_auto_westPreStart";
+publicVariable "bc_auto_eastPreStart";
+publicVariable "bc_auto_preStartLocationsFound";
+
+// Send info about starting locations
 bc_auto_foundPositions = true;
 publicVariable "bc_auto_teamStarts"; // An array with sub arrays containing the X, Y, and Z coordinates of both team's starting positions.
 publicVariable "bc_auto_centralLocation"; // An array containing the X, Y, and Z coordinates of the central point on the battlefield.

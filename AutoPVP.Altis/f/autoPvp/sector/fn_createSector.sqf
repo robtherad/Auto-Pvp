@@ -1,6 +1,5 @@
 /*
-- Create sector and place a flag pole in the center?
-- Move teams to their starting positions
+Creates sectors and then adds a CBA PFH to poll them.
 */
 if (!isServer) exitWith {};
 
@@ -53,5 +52,5 @@ bc_auto_endPoints = bc_auto_quickestTime * 60 * (count bc_auto_triggerArray);
     _markerNameIterator = _markerNameIterator + 1;
 } forEach bc_auto_triggerArray;
 
-
+// TODO: Balance sector polling time as well as total points goal.
 [bc_fnc_watchSector, 10, [bc_auto_triggerArray]] call CBA_fnc_addPerFrameHandler;

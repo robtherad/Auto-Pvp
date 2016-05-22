@@ -39,6 +39,35 @@ bc_auto_missionScale = 500;
         
         bc_auto_flagpole = createVehicle ["Flag_White_F", bc_auto_centerLocation, [], 0, "NONE"];
         
+        // Generate pre-start locations for both teams to 
+        [{
+            params ["_args", "_handle"];
+            
+            // Generate pre-start locations for teams
+            if (isNil "bc_auto_westPreStart") then {
+                bc_auto_westPreStart = call bc_fnc_chooseRandomCenter;
+            };
+            if (isNil "bc_auto_eastPreStart") then {
+                bc_auto_eastPreStart = call bc_fnc_chooseRandomCenter;
+            };
+            
+            // Make sure the locations aren't too close to each other or to the actual play area
+            private _acceptableDistance = bc_auto_missionScale*2;
+            if ( (bc_auto_westPreStart distance bc_auto_centerLocation) < _acceptableDistance ) then {
+                bc_auto_westPreStart = nil;
+            };
+            if ( (bc_auto_eastPreStart distance bc_auto_centerLocation) < _acceptableDistance && {(bc_auto_eastPreStart distance bc_auto_centerLocation) < 750}) then {
+                bc_auto_eastPreStart = nil;
+            };
+            
+            // Check if both variables are complete
+            if (!isNil "bc_auto_westPreStart" && {!isNil "bc_auto_eastPreStart"}) then {
+                [_handle] call CBA_fnc_removePerFrameHandler;
+                
+                bc_auto_preStartLocationsFound = true;
+            };
+        }, 0, []] call CBA_fnc_addPerFrameHandler;
+        /*
         // DEBUG - Place markers at all 3 points
         {
             _markerName = format ["markerName_%1",_forEachIndex];
@@ -61,5 +90,6 @@ bc_auto_missionScale = 500;
         bc_auto_markerArray pushBack "bc_auto_AOMarker";
         
         // END DEBUG
+        */
     };
 }, 0, []] call CBA_fnc_addPerFrameHandler;

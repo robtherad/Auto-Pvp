@@ -5,6 +5,7 @@ The PFH finds a suitable location for a battle to take place and then makes call
 if (!isServer) exitWith {};
 
 private _worldList = [
+    // TODO: Get world sizes for other maps.
     // "worldName, [worldXSize, worldYSize],
     "Altis", [30000,30000], 
     "Stratis", []
@@ -16,9 +17,11 @@ private _worldList = [
 private _worldIndex = _worldList find worldName;
 bc_auto_worldSizeArray = _worldList select (_worldIndex + 1);
 
-// Determine Mission Scale (Border distance)
+// Determine Mission Scale (AO Borders)
+// TODO: Write scaling function. 
+// Should return the size of the mission boundary as a single number. Use the same variable, bc_auto_missionScale.
+// Lower playercount = smaller play area, larger playercount = bigger play area
 bc_auto_missionScale = 500;
-bc_auto_spotFound = false;
 
 // Find starting locations for teams
 [{

@@ -24,6 +24,7 @@ bc_auto_worldSizeArray = _worldList select (_worldIndex + 1);
 bc_auto_missionScale = 500;
 
 // Find starting locations for teams
+// TODO: Come up with a way to make sure the central location is accessable via land by both teams
 [{
     params ["_args", "_handle"];
     

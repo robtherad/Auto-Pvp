@@ -8,7 +8,7 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=3;
+		nextID=4;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={22235.146,30.730963,11022.484};
-		dir[]={-0.4102602,-0.28785035,0.86534917};
-		up[]={-0.12331289,0.9576748,0.26010001};
-		aside[]={0.90359443,-6.6822395e-008,0.42839313};
+		pos[]={22264.869,82.756058,10974.204};
+		dir[]={-0.50201249,-0.52256954,0.68913543};
+		up[]={-0.30769089,0.85259449,0.42238107};
+		aside[]={0.80827826,-1.5334808e-007,0.5888052};
 	};
 };
 binarizationWanted=0;
@@ -55,7 +55,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=2;
+		items=3;
 		class Item0
 		{
 			dataType="Group";
@@ -94,6 +94,23 @@ class Mission
 			name="placeMark_Blue";
 			type="Empty";
 			id=2;
+		};
+		class Item2
+		{
+			dataType="Trigger";
+			position[]={22179.24,25.131514,11054.792};
+			class Attributes
+			{
+				name="bc_auto_centralTrigger";
+				text="Center";
+				sizeA=25;
+				sizeB=25;
+				repeatable=1;
+				activationBy="ANY";
+			};
+			id=3;
+			type="EmptyDetector";
+			atlOffset=1.9073486e-006;
 		};
 	};
 };

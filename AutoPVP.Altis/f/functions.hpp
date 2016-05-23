@@ -53,6 +53,7 @@ class autoPvpSector {
     class createSector{};
     class watchSector{};
     class pointsDisplay{postInit = 1;};
+    class titleTextSector{};
 };
 class autoPvpplace {
     file = "f\autoPvp\placement";

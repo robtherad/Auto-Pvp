@@ -1,8 +1,6 @@
 params ["_args", "_handle"];
 _args params ["_triggerList", "_delay"];
-diag_log "TEST";
-diag_log _args;
-diag_log "TEST";
+
 private _triggerCount = count _triggerList;
 private _markerNameIterator = 0;
 { // forEach _triggerList
@@ -71,7 +69,13 @@ private _markerNameIterator = 0;
 
     // Sector has changed sides
     if ((_sideCurOwned != _sideLastOwned) && {_sideCurOwned != 3}) then {
-        // [[_sideCurOwned, _x],"scripts\sectors\client.sqf"] remoteExecCall ["BIS_fnc_execVM", 0];
+        private _textString = "----";
+        switch (_sideCurOwned) do {
+            case 0: { _textString = format["BLUFOR have taken control of %1.",triggerText _x]; };
+            case 1: { _textString = format["OPFOR have taken control of %1.",triggerText _x]; };
+            case 2: { _textString = format["%1 is now contested.",triggerText _x]; };
+        };
+        [_textString] remoteExecCall ["bc_fnc_titleTextSector", 0];
     };
     // Iterator for marker names
     _markerNameIterator = _markerNameIterator + 1;
@@ -89,12 +93,14 @@ if (bc_auto_eastPoints != bc_auto_eastPointsPublic) then {
 
 // Ending conditions
 if (bc_auto_westPoints >= bc_auto_endPoints) then {
-    _currentState = 5;
-    // [[_currentState,bc_auto_westPoints,bc_auto_eastPoints,bc_auto_endPoints],"scripts\sectors\client.sqf"] remoteExecCall ["BIS_fnc_execVM", 0];
-    bc_auto_playing = false;
+    private _textString = format ["The BLUFOR team has reached the required amount of points to win the mission."];
+    [_textString] remoteExecCall ["bc_fnc_titleTextSector", 0];
+    
+    [_handle] call CBA_fnc_removePerFrameHandler;
 };
 if (bc_auto_eastPoints >= bc_auto_endPoints) then {
-    _currentState = 6;
-    // [[_currentState,bc_auto_westPoints,bc_auto_eastPoints,bc_auto_endPoints],"scripts\sectors\client.sqf"] remoteExecCall ["BIS_fnc_execVM", 0];
-    bc_auto_playing = false;
+    private _textString = format ["The OPFOR team has reached the required amount of points to win the mission."];
+    [_textString] remoteExecCall ["bc_fnc_titleTextSector", 0];
+    
+    [_handle] call CBA_fnc_removePerFrameHandler;
 };

@@ -8,7 +8,6 @@ private _totalCapTime = ["bc_auto_sectorTime",25] call BIS_fnc_getParamValue;
 bc_auto_westPointsPublic = 0;
 bc_auto_eastPointsPublic = 0;
 
-diag_log "AUTODEBUG PVP - SHOULD HAVE ADDED DISPLAY PFH!";
 [{
     params ["_args","_handle"];
     _args params ["_totalCapTime"];
@@ -55,7 +54,7 @@ diag_log "AUTODEBUG PVP - SHOULD HAVE ADDED DISPLAY PFH!";
                     missionNamespace setVariable [_stringVar, _string];
                 };
             };
-        } forEach [["bc_auto_westPointsString", bc_auto_westPointsPublic, "BLUFOR"], ["bc_auto_eastPointsString", bc_auto_eastPointsPublic, "OPFOR"]];
+        } forEach [["bc_auto_westPointsString", bc_auto_westPointsPublic, "BLUFOR"], ["bc_auto_eastPointsString", bc_auto_eastPointsPublic, "REDFOR"]];
         
         // Create displays in bottom left
         ("bluRsc" call BIS_fnc_rscLayer) cutRsc ["redforStructText", "PLAIN"];

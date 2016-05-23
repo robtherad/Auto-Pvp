@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={12384.007,501.04562,13093.143};
-		dir[]={0.47858593,-0.38577393,0.7887578};
-		up[]={0.2001168,0.92259187,0.32981202};
-		aside[]={0.85493386,9.2797563e-008,-0.51874036};
+		pos[]={12786.037,58.063412,13470.985};
+		dir[]={0.75428623,-0.30843163,0.57959932};
+		up[]={0.24457316,0.95124441,0.18793151};
+		aside[]={0.60930383,2.742745e-007,-0.79294574};
 	};
 };
 binarizationWanted=0;
@@ -67,7 +67,7 @@ class Mission
 			class Attributes
 			{
 				name="bc_auto_centralTrigger";
-				text="Center";
+				text="The Sector";
 				sizeA=25;
 				sizeB=25;
 				repeatable=1;
@@ -664,6 +664,7 @@ class Mission
 					};
 					id=29;
 					type="B_Soldier_SL_F";
+					atlOffset=-1.9073486e-006;
 				};
 				class Item1
 				{
@@ -690,6 +691,7 @@ class Mission
 			{
 			};
 			id=28;
+			atlOffset=-1.9073486e-006;
 		};
 		class Item7
 		{
@@ -1207,7 +1209,7 @@ class Mission
 					};
 					id=57;
 					type="B_soldier_AR_F";
-					atlOffset=0.00010871887;
+					atlOffset=0.00010108948;
 				};
 				class Item2
 				{
@@ -2056,6 +2058,7 @@ class Mission
 					};
 					id=101;
 					type="O_Soldier_LAT_F";
+					atlOffset=3.8146973e-006;
 				};
 				class Item5
 				{
@@ -2821,6 +2824,7 @@ class Mission
 					};
 					id=141;
 					type="O_HeavyGunner_F";
+					atlOffset=-3.8146973e-006;
 				};
 				class Item1
 				{
@@ -2869,6 +2873,7 @@ class Mission
 			{
 			};
 			id=140;
+			atlOffset=-3.8146973e-006;
 		};
 		class Item29
 		{

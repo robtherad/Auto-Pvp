@@ -25,5 +25,5 @@ publicVariable "bc_auto_preStartLocationsFound";
 // Send info about starting locations
 bc_auto_foundPositions = true;
 publicVariable "bc_auto_teamStarts"; // An array with sub arrays containing the X, Y, and Z coordinates of both team's starting positions.
-publicVariable "bc_auto_centralLocation"; // An array containing the X, Y, and Z coordinates of the central point on the battlefield.
+publicVariable "bc_auto_centerLocation"; // An array containing the X, Y, and Z coordinates of the central point on the battlefield.
 publicVariable "bc_auto_foundPositions"; // A boolean variable that clients running the placement script will be waiting for.

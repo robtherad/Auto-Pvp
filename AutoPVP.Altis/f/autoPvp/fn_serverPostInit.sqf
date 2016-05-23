@@ -51,7 +51,6 @@ bc_auto_missionTime = ["bc_auto_timeLimit",45] call BIS_fnc_getParamValue;
         
         bc_auto_searchAttempts = nil;
         
-        call bc_fnc_foundPositions;
         bc_auto_markerArray = [];
         
         // Create Flag
@@ -90,7 +89,11 @@ bc_auto_missionTime = ["bc_auto_timeLimit",45] call BIS_fnc_getParamValue;
                 [_handle] call CBA_fnc_removePerFrameHandler;
                 
                 bc_auto_preStartLocationsFound = true;
+                
+                call bc_fnc_foundPositions;
             };
+            
+            
         }, 0, []] call CBA_fnc_addPerFrameHandler;
     };
 }, 0, []] call CBA_fnc_addPerFrameHandler;

@@ -1,6 +1,6 @@
 author = "robtherad";
-onLoadName = "Auto PVP";
-OnLoadMission = "Randomly generated battlefields that scale with player count.";
+onLoadName = "Dynamic Fight Night";
+OnLoadMission = "Randomly generated PVP battlefields on Altis.";
 // loadScreen =  "images\intro.jpg";
 
 #include "description\definitions.hpp"

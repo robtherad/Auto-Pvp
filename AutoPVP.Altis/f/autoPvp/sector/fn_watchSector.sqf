@@ -25,6 +25,7 @@ private _markerNameIterator = 0;
         } else {
             _textMarkerName setMarkerText (triggerText _x + " - BLUFOR Controlled");
             _bgMarkerName setMarkerColor "ColorBLUFOR";
+            bc_auto_flagPole setFlagTexture "\ca\ca_e\data\flag_blufor_co.paa";
             _x setVariable ["bc_auto_lastOwner",_sideCurOwned];
         };
     };
@@ -37,6 +38,7 @@ private _markerNameIterator = 0;
         } else {
             _textMarkerName setMarkerText (triggerText _x + " - OPFOR Controlled");
             _bgMarkerName setMarkerColor "ColorOPFOR";
+            bc_auto_flagPole setFlagTexture "\ca\ca_e\data\flag_opfor_co.paa";
             _x setVariable ["bc_auto_lastOwner",_sideCurOwned];
         };
     };
@@ -46,6 +48,7 @@ private _markerNameIterator = 0;
         _sideCurOwned = 2;
         _textMarkerName setMarkerText (triggerText _x + " - CONTESTED");
         _bgMarkerName setMarkerColor "ColorBlack";
+        bc_auto_flagPole setFlagTexture "\ca\ca_e\data\flag_white_co.paa";
         _x setVariable ["bc_auto_lastOwner",_sideCurOwned];
     };
 

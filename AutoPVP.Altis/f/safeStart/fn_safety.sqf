@@ -2,12 +2,12 @@
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 //=====================================================================================
 
-//Exit if server
+// Exit if server
 if (!hasInterface) exitwith {};
 
 switch (_this select 0) do
 {
-    //Turn safety on
+    // Turn safety on
     case true:
     {
         bc_safeStartEnabled = true;
@@ -31,7 +31,7 @@ switch (_this select 0) do
         player allowDamage false;
     };
 
-    //Turn safety off
+    // Turn safety off
     case false;
     default {
         // Allow player to fire weapons
@@ -56,7 +56,7 @@ switch (_this select 0) do
         bc_safeStartEnabled = false;
         
         // AUTO PVP CODE
-            titleText ["Transporting to starting location...\n\nGood luck.", "BLACK FADED", 0.3];
+            titleText ["You have been teleported to your team's starting location.\n\nGood luck.", "PLAIN DOWN", 1];
             // Returns a position that is a specified distance and compass direction from the passed position or object.
             private _newPos = bc_auto_ownTeamStart getPos [bc_rs_distance, bc_rs_direction];
 

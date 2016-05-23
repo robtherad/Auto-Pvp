@@ -13,15 +13,19 @@ private _worldList = [
     // Don't forget to remove the comma after the last position array!
 ];
 
-// Determine World Size
-private _worldIndex = _worldList find worldName;
-bc_auto_worldSizeArray = _worldList select (_worldIndex + 1);
+// Get size of current map
+// TODO: Add some error handling in case the map isn't in the list
 
-// Determine Mission Scale (AO Borders)
-// TODO: Write scaling function. 
-// Should return the size of the mission boundary as a single number. Use the same variable, bc_auto_missionScale.
-// Lower playercount = smaller play area, larger playercount = bigger play area
-bc_auto_missionScale = 500;
+private _worldIndex = _worldList find worldName;
+if (_worldIndex isEqualTo -1) then {
+    bc_auto_worldSizeArray = _worldList select (_worldIndex + 1);
+} else {
+    bc_auto_worldSizeArray = [1000,1000]; // Unable to find correct world size.
+    diag_log format ["PHX Auto PVP: (fn_serverPostInit) Unable to find world name in _worldList -- %1",worldName];
+};
+
+bc_auto_missionScale = ["bc_auto_AOSize",500] call BIS_fnc_getParamValue;
+bc_auto_missionTime = ["bc_auto_timeLimit",45] call BIS_fnc_getParamValue;
 
 // Find starting locations for teams
 // TODO: Come up with a way to make sure the central location is accessable via land by both teams
@@ -29,17 +33,41 @@ bc_auto_missionScale = 500;
     params ["_args", "_handle"];
     
     bc_auto_centerLocation = call bc_fnc_chooseRandomCenter;
-    
     bc_auto_teamStarts = [bc_auto_centerLocation, bc_auto_missionScale] call bc_fnc_findTeamStarts;
+    
+    /*
+    // TODO: Figure out why this doesn't work. Game just hangs.
+    // Break out of infinite loop and end mission if the script can't find a suitable play area in a reasonable amount of time.
+    if (isNil "bc_auto_searchAttempts") then {bc_auto_searchAttempts = 0;};
+    bc_auto_searchAttempts = bc_auto_searchAttempts + 1;
+    diag_log format ["DEBUG Search Tries: %1",bc_auto_searchAttempts];
+    if (bc_auto_searchAttempts >= 10) then {
+        [_handle] call CBA_fnc_removePerFrameHandler;
+        diag_log "PHX Auto PVP: (fn_serverPostInit) Unable to find suitable play area after 20 tries. Giving up.";
+        "Lost" call BIS_fnc_endMissionServer;
+    };
+    */
+        
     if (count bc_auto_teamStarts isEqualTo 2) then {
         [_handle] call CBA_fnc_removePerFrameHandler;
+        
+        bc_auto_searchAttempts = nil;
         
         call bc_fnc_foundPositions;
         bc_auto_markerArray = [];
         
+        // Create Flag
         bc_auto_flagpole = createVehicle ["Flag_White_F", bc_auto_centerLocation, [], 0, "NONE"];
+        bc_auto_flagpole allowDamage false;
+        bc_auto_flagpole enableSimulationGlobal false;
         
-        // Generate pre-start locations for both teams to 
+        // Create AO Border
+        bc_auto_centralMarker = createMarker ["bc_auto_AOMarker", bc_auto_centerLocation];
+        bc_auto_centralMarker setMarkerShape "ELLIPSE";
+        bc_auto_centralMarker setMarkerSize [bc_auto_missionScale + 50, bc_auto_missionScale + 50];
+        bc_auto_centralMarker setMarkerBrush "Border";
+        
+        // Generate staging areas for both teams
         [{
             params ["_args", "_handle"];
             
@@ -67,29 +95,5 @@ bc_auto_missionScale = 500;
                 bc_auto_preStartLocationsFound = true;
             };
         }, 0, []] call CBA_fnc_addPerFrameHandler;
-        /*
-        // DEBUG - Place markers at all 3 points
-        {
-            _markerName = format ["markerName_%1",_forEachIndex];
-            _markerstr = createMarker [_markerName, [_x select 0, _x select 1]];
-            _markerstr setMarkerShape "ICON";
-            _markerstr setMarkerType "hd_dot";
-            // _markerstr setMarkerText str(_forEachIndex);
-            
-            bc_auto_markerArray pushBack _markerName;
-            
-            // player setPos _x;
-        } forEach bc_auto_teamStarts + [bc_auto_centerLocation];
-        
-        // Create circle around AO
-        _markerstr2 = createMarker ["bc_auto_AOMarker", bc_auto_centerLocation];
-        _markerstr2 setMarkerShape "ELLIPSE";
-        _markerstr2 setMarkerSize [bc_auto_missionScale+75,bc_auto_missionScale+75];
-        _markerstr2 setMarkerBrush "Border";
-        
-        bc_auto_markerArray pushBack "bc_auto_AOMarker";
-        
-        // END DEBUG
-        */
     };
 }, 0, []] call CBA_fnc_addPerFrameHandler;

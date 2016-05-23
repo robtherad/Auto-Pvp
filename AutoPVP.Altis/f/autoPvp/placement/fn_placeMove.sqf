@@ -36,7 +36,6 @@ private _placeMarkPos = getMarkerPos _placeMark;
     _startMarkTwo setMarkerTextLocal _preText;
 
     
-    
 // Starting Location Markers
     // Own Team's Marker
     private _startMarkTwo = createMarkerLocal ["bc_rs_startZoneFriendly",bc_auto_ownTeamStart];
@@ -84,9 +83,12 @@ private _placeMarkPos = getMarkerPos _placeMark;
 // Add a PFH that will pop up a warning for the player
 [{
     params ["_args", "_handle"];
-    
     if (time > 0 && {bc_safeStartEnabled}) then {
-        titleText ["Your team is currently located at it's staging area which is marked on the map. After safestart is over you will be automatically teleported to your team's starting area within the AO. You will arrive there in the same formation that you arrived in when you got here.","PLAIN DOWN", 2];
+        titleText [
+        "Your team is currently located at it's staging area which is marked on the map.
+        \nAfter safestart is over you will be automatically teleported to your team's starting area within the AO.
+        \nYou will arrive there in the same formation that you arrived in when you got here."
+        , "PLAIN DOWN", 2];
         [_handle] call CBA_fnc_removePerFrameHandler;
     };
 }, 2, []] call CBA_fnc_addPerFrameHandler;

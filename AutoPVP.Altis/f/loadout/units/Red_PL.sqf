@@ -7,25 +7,24 @@ removeBackpack player;
 removeHeadgear player;
 removeGoggles player;
 
-player forceAddUniform "rhs_uniform_flora_patchless_alt";
+player forceAddUniform "CUP_U_O_CHDKZ_Kam_02";
 for "_i" from 1 to 2 do {player addItemToUniform "FirstAidKit";};
 for "_i" from 1 to 4 do {player addItemToUniform "SmokeShell";};
-player addVest "rhs_6b23_ML_6sh92";
-for "_i" from 1 to 5 do {player addItemToVest "rhs_30Rnd_762x39mm";};
+player addVest "CUP_V_BAF_Osprey_Mk2_DPM_Scout";
+for "_i" from 1 to 5 do {player addItemToVest "CUP_30Rnd_545x39_AK_M";};
 for "_i" from 1 to 4 do {player addItemToVest "SmokeShellGreen";};
 for "_i" from 1 to 2 do {player addItemToVest "HandGrenade";};
 
-player addWeapon "rhs_weap_akm";
+player addWeapon "CUP_arifle_AK107";
 removeAllPrimaryWeaponItems player;
-player addPrimaryWeaponItem "rhs_acc_2dpZenit";
 
 if (s_loadout_radio != 3) then {
     player linkItem "ItemRadio";
 };
 
-player addBackpack "B_FieldPack_khk";
-for "_i" from 1 to 10 do {player addItemToBackpack "rhs_30Rnd_762x39mm";};
-player addHeadgear "rhs_6b27m_ml";
+player addBackpack "CUP_B_CivPack_WDL";
+for "_i" from 1 to 10 do {player addItemToBackpack "CUP_30Rnd_545x39_AK_M";};
+player addHeadgear "CUP_H_SLA_Helmet";
 player addGoggles "G_Bandanna_khk";
 
 player addWeapon "Binocular";

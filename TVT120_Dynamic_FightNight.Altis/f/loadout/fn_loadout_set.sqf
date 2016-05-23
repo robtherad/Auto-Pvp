@@ -43,7 +43,7 @@ switch (_char) do {
 };
 
 // Generate loadout briefing page.
-call BC_fnc_loadout_notes;
+call phx_fnc_loadout_notes;
 
 } else {
 // PLAYER IS JIP, REMOVE GEAR JUST IN CASE
@@ -56,5 +56,5 @@ removeBackpack player;
 removeHeadgear player;
 removeGoggles player;
 
-player setVariable ["bc_loadoutAssigned",false];
+player setVariable ["phx_loadoutAssigned",false];
 };

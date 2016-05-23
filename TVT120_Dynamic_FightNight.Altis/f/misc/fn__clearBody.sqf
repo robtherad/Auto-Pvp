@@ -1,12 +1,12 @@
 /* ----------------------------------------------------------------------------
-Function: BC_fnc__clearBody
+Function: phx_fnc__clearBody
 Description:
     Remotely (from server) remove all posessions from a unit
 Parameters:
     _unit - the unit <OBJECT>
 Examples:
     (begin example)
-        [player] call BC_fnc__clearBody;
+        [player] call phx_fnc__clearBody;
     (end)
 ---------------------------------------------------------------------------- */
 params ["_unit"];

@@ -2,11 +2,11 @@ if (!hasInterface) exitWith {};
 
 // Make sure the sector control script has been running long enough
 phx_show_captureUI = true;
-bc_show_timeUI = false;
-private _totalCapTime = ["bc_auto_sectorTime",25] call BIS_fnc_getParamValue;
+phx_show_timeUI = false;
+private _totalCapTime = ["phx_auto_sectorTime",25] call BIS_fnc_getParamValue;
 
-bc_auto_westPointsPublic = 0;
-bc_auto_eastPointsPublic = 0;
+phx_auto_westPointsPublic = 0;
+phx_auto_eastPointsPublic = 0;
 
 [{
     params ["_args","_handle"];
@@ -15,7 +15,7 @@ bc_auto_eastPointsPublic = 0;
     
     disableSerialization;
     
-    if (phx_show_captureUI || {bc_show_timeUI}) then {
+    if (phx_show_captureUI || {phx_show_timeUI}) then {
         // Figure out time left for both teams
         {       
             // diag_log format["pointsDisplay --",];
@@ -54,7 +54,7 @@ bc_auto_eastPointsPublic = 0;
                     missionNamespace setVariable [_stringVar, _string];
                 };
             };
-        } forEach [["bc_auto_westPointsString", bc_auto_westPointsPublic, "BLUFOR"], ["bc_auto_eastPointsString", bc_auto_eastPointsPublic, "REDFOR"]];
+        } forEach [["phx_auto_westPointsString", phx_auto_westPointsPublic, "BLUFOR"], ["phx_auto_eastPointsString", phx_auto_eastPointsPublic, "REDFOR"]];
         
         // Create displays in bottom left
         ("bluRsc" call BIS_fnc_rscLayer) cutRsc ["redforStructText", "PLAIN"];
@@ -63,11 +63,11 @@ bc_auto_eastPointsPublic = 0;
         // Update text in the displays to match the points markers
         private _display = uiNameSpace getVariable "redforStructText";
         private _setText = _display displayCtrl 1001;
-        _setText ctrlSetStructuredText (parseText format ["%1",bc_auto_eastPointsString]);
+        _setText ctrlSetStructuredText (parseText format ["%1",phx_auto_eastPointsString]);
                 
         private _display2 = uiNameSpace getVariable "bluforStructText";
         private _setText2 = _display2 displayCtrl 1002;
-        _setText2 ctrlSetStructuredText (parseText format ["%1",bc_auto_westPointsString]);
+        _setText2 ctrlSetStructuredText (parseText format ["%1",phx_auto_westPointsString]);
     } else {
         ("bluRsc" call BIS_fnc_rscLayer) cutText ["", "PLAIN"];
         ("redRsc" call BIS_fnc_rscLayer) cutText ["", "PLAIN"];

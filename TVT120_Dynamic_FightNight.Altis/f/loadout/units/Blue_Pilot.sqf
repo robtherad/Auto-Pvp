@@ -30,4 +30,4 @@ if (s_loadout_map != 3) then {
 player linkItem "ItemCompass";
 player linkItem "ItemWatch";
 
-missionNamespace setVariable ["bc_loadoutAssigned",true]; //Place this at the end of the loadout script so other scripts can tell when the player's loadout has been set.
+missionNamespace setVariable ["phx_loadoutAssigned",true]; //Place this at the end of the loadout script so other scripts can tell when the player's loadout has been set.

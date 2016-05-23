@@ -1,6 +1,6 @@
-//_this select 0 params [bc_ignoreMarkerArray];
+//_this select 0 params [phx_ignoreMarkerArray];
 //FUNCTIONS
-fn_bc_createVehMarks={
+fn_phx_createVehMarks={
     private ["_vehArray","_markerName","_markerPos","_markerFaction","_marker","_markerString","_vehSide","_veh","_type"];
     _vehArray = _this select 0;
     { //forEach _vehArray
@@ -8,7 +8,7 @@ fn_bc_createVehMarks={
         _type = (_x select 1)+1;
         _markerName = str(_veh) + "_marker";
         _markerPos = getPos _veh;
-        _vehSide = _veh getVariable ["bc_vehSide",(side player)];
+        _vehSide = _veh getVariable ["phx_vehSide",(side player)];
         _markerFaction = switch (_vehSide) do {
             case west: { ["ColorBLUFOR","b_armor","b_air","b_plane","b_unknown"] };
             case east: { ["ColorOPFOR","b_armor","b_air","b_plane","b_unknown"] };
@@ -19,12 +19,12 @@ fn_bc_createVehMarks={
         _marker setMarkerShapeLocal "ICON";
         _marker setMarkerColorLocal (_markerFaction select 0);
         _marker setMarkerTypeLocal (_markerFaction select _type);
-        _markerString = _veh getVariable "bc_MarkerName";
+        _markerString = _veh getVariable "phx_MarkerName";
         if (!isNil "_markerString") then {
             _marker setMarkerTextLocal _markerString;
         } else {
             _marker setMarkerTextLocal str(_veh);
-            _veh setVariable ["bc_MarkerName",str(_veh)];
+            _veh setVariable ["phx_MarkerName",str(_veh)];
         };
         _marker setMarkerSizeLocal [.75,.75];
         _marker setMarkerAlphaLocal 0;
@@ -32,15 +32,15 @@ fn_bc_createVehMarks={
 };
 
 _sizeMarkOptions = ["group_0","group_2","group_3","group_4","Empty"]; //Creates NATO pips above unit markers. If the unit's size isn't set it displays no pip
-bc_gps_iteration = 0;
+phx_gps_iteration = 0;
 
 //CREATE NEW MARKERS
 //Infantry
 { //forEach allGroups
-    if (!((groupID _x) in bc_ignoreMarkerArray)) then {
-        _markerName = str(bc_gps_iteration) + "_marker";
-        _groupSize = _x getVariable ["bc_gps_groupSize",4];
-        _x setVariable ["bc_gps_markerName",_markerName];
+    if (!((groupID _x) in phx_ignoreMarkerArray)) then {
+        _markerName = str(phx_gps_iteration) + "_marker";
+        _groupSize = _x getVariable ["phx_gps_groupSize",4];
+        _x setVariable ["phx_gps_markerName",_markerName];
         _markerPos = getPos (leader _x);
         _markerFaction = switch (side (leader _x)) do {
             case west: { ["ColorBLUFOR","b_inf","b_hq"] };
@@ -64,14 +64,14 @@ bc_gps_iteration = 0;
         _sizeMarker setMarkerSizeLocal [.75,.75];
         _sizeMarker setMarkerAlphaLocal 0;
         
-        bc_gps_iteration = bc_gps_iteration + 1;
+        phx_gps_iteration = phx_gps_iteration + 1;
     };
 } forEach allGroups;
 
 //Vehicles
-if (!isNil "bc_sideVehArray") then {[bc_sideVehArray] call fn_bc_createVehMarks;};
+if (!isNil "phx_sideVehArray") then {[phx_sideVehArray] call fn_phx_createVehMarks;};
 //DONE CREATING MARKERS
 
-bc_gps_iteration = nil; //might as well destroy this variable since it's not used again
+phx_gps_iteration = nil; //might as well destroy this variable since it's not used again
 
-bc_gpsHandle = [BC_fnc_gps_updateMarks, 2, []] call CBA_fnc_addPerFrameHandler;
+phx_gpsHandle = [phx_fnc_gps_updateMarks, 2, []] call CBA_fnc_addPerFrameHandler;

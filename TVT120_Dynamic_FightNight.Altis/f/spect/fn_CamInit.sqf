@@ -4,9 +4,9 @@
 //_this = [this,objNull,0,0,true] execVM "f\spect\fn_CamInit.sqf";
 // params
 
-if (!isNil "bc_isSpectator") exitWith {diag_log "fn_CamInit: Already ran, exiting early."};
-if (isNil "bc_isSpectator") then {
-    bc_isSpectator = true;
+if (!isNil "phx_isSpectator") exitWith {diag_log "fn_CamInit: Already ran, exiting early."};
+if (isNil "phx_isSpectator") then {
+    phx_isSpectator = true;
 };
 
 _this spawn {
@@ -116,7 +116,7 @@ f_freecam_x_speed = 0;
 f_freecam_y_speed = 0;
 f_freecam_z_speed = 0;
 f_cam_tagTextSize = 0.025;
-bc_show_timeUI = true;
+phx_show_timeUI = true;
 
 f_cam_timestamp = time;
 f_cam_muteSpectators = true;
@@ -201,7 +201,7 @@ createDialog "f_spec_dialog";
 ((findDisplay 9228) displayCtrl 1360) ctrlShow false;
 ((findDisplay 9228) displayCtrl 1360) mapCenterOnCamera false;
 
-["Extra Keys\n\nPress 'F1' to see this hint again.\nPress 'U' to hide the spectator UI.\nPress 'V' to hide the remaining time UI.\nPress 'Right Arrow' to make player tags bigger.\nPress 'Left Arrow' to make player tags smaller.\n\nTo see who you killed as well as who killed you, press your chat key (default '/') then press 'Page-Up' until you see the information in the chat area.\n\nPress 'F2' to hide this message and others like it.",20] call bc_fnc__hintThenClear;
+["Extra Keys\n\nPress 'F1' to see this hint again.\nPress 'U' to hide the spectator UI.\nPress 'V' to hide the remaining time UI.\nPress 'Right Arrow' to make player tags bigger.\nPress 'Left Arrow' to make player tags smaller.\n\nTo see who you killed as well as who killed you, press your chat key (default '/') then press 'Page-Up' until you see the information in the chat area.\n\nPress 'F2' to hide this message and others like it.",20] call phx_fnc__hintThenClear;
 f_cam_helptext = "<t color='#EAA724'>Press F1 to see more keys.<br />Hold right-click to pan the camera.<br />Use the scroll wheel or numpad+/- to zoom in and out.<br />Use ctrl + rightclick to fov zoom<br />Press H to show and close the help window.<br />Press M to toggle between no map,minimap and full size map.<br />T for switching on tracers on the map<br/>Space to switch to freecam <br/>Use the left and right arrow keys to adjust size of player tags.</t>";
 ((findDisplay 9228) displayCtrl 1310) ctrlSetStructuredText parseText (f_cam_helptext);
 // create the camera and set it up.

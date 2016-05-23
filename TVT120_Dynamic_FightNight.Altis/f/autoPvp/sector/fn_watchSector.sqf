@@ -6,8 +6,8 @@ private _markerNameIterator = 0;
 { // forEach _triggerList
 
     // Get owner of the cap from the last time it was checked
-    private _sidePastOwned = _x getVariable "bc_auto_curOwner";
-    private _sideLastOwned = _x getVariable "bc_auto_lastOwner";
+    private _sidePastOwned = _x getVariable "phx_auto_curOwner";
+    private _sideLastOwned = _x getVariable "phx_auto_lastOwner";
 
     // Get marker names
     private _textMarkerName = str(_markerNameIterator) + "_BCAutoMarkText";
@@ -21,12 +21,12 @@ private _markerNameIterator = 0;
     if (_westCount > _eastCount) then {
         _sideCurOwned = 0;
         if (_sideCurOwned isEqualTo _sidePastOwned) then {
-            bc_auto_westPoints = bc_auto_westPoints+ (1*_delay);
+            phx_auto_westPoints = phx_auto_westPoints+ (1*_delay);
         } else {
             _textMarkerName setMarkerText (triggerText _x + " - BLUFOR Controlled");
             _bgMarkerName setMarkerColor "ColorBLUFOR";
-            bc_auto_flagPole setFlagTexture "\ca\ca_e\data\flag_blufor_co.paa";
-            _x setVariable ["bc_auto_lastOwner",_sideCurOwned];
+            phx_auto_flagPole setFlagTexture "\ca\ca_e\data\flag_blufor_co.paa";
+            _x setVariable ["phx_auto_lastOwner",_sideCurOwned];
         };
     };
 
@@ -34,12 +34,12 @@ private _markerNameIterator = 0;
     if (_eastCount > _westCount) then {
         _sideCurOwned = 1;
         if (_sideCurOwned isEqualTo _sidePastOwned) then {
-            bc_auto_eastPoints = bc_auto_eastPoints+ (1*_delay);
+            phx_auto_eastPoints = phx_auto_eastPoints+ (1*_delay);
         } else {
             _textMarkerName setMarkerText (triggerText _x + " - OPFOR Controlled");
             _bgMarkerName setMarkerColor "ColorOPFOR";
-            bc_auto_flagPole setFlagTexture "\ca\ca_e\data\flag_opfor_co.paa";
-            _x setVariable ["bc_auto_lastOwner",_sideCurOwned];
+            phx_auto_flagPole setFlagTexture "\ca\ca_e\data\flag_opfor_co.paa";
+            _x setVariable ["phx_auto_lastOwner",_sideCurOwned];
         };
     };
 
@@ -48,8 +48,8 @@ private _markerNameIterator = 0;
         _sideCurOwned = 2;
         _textMarkerName setMarkerText (triggerText _x + " - CONTESTED");
         _bgMarkerName setMarkerColor "ColorBlack";
-        bc_auto_flagPole setFlagTexture "\ca\ca_e\data\flag_white_co.paa";
-        _x setVariable ["bc_auto_lastOwner",_sideCurOwned];
+        phx_auto_flagPole setFlagTexture "\ca\ca_e\data\flag_white_co.paa";
+        _x setVariable ["phx_auto_lastOwner",_sideCurOwned];
     };
 
     // Neutral Objective - 3
@@ -57,15 +57,15 @@ private _markerNameIterator = 0;
         _sideCurOwned = 3;
         // For objectives that a side controls but no longer occupies
         if (_sideLastOwned isEqualTo 0) then {
-            bc_auto_westPoints = bc_auto_westPoints+ (1*_delay);
+            phx_auto_westPoints = phx_auto_westPoints+ (1*_delay);
         };
         if (_sideLastOwned isEqualTo 1) then {
-            bc_auto_eastPoints = bc_auto_eastPoints+ (1*_delay);
+            phx_auto_eastPoints = phx_auto_eastPoints+ (1*_delay);
         };
     };
     
     // Set current owner
-    _x setVariable ["bc_auto_curOwner",_sideCurOwned];
+    _x setVariable ["phx_auto_curOwner",_sideCurOwned];
 
     // Sector has changed sides
     if ((_sideCurOwned != _sideLastOwned) && {_sideCurOwned != 3}) then {
@@ -75,32 +75,32 @@ private _markerNameIterator = 0;
             case 1: { _textString = format["OPFOR have taken control of %1.",triggerText _x]; };
             case 2: { _textString = format["%1 is now contested.",triggerText _x]; };
         };
-        [_textString] remoteExecCall ["bc_fnc_titleTextSector", 0];
+        [_textString] remoteExecCall ["phx_fnc_titleTextSector", 0];
     };
     // Iterator for marker names
     _markerNameIterator = _markerNameIterator + 1;
 } forEach _triggerList;
 
 // Update points for clients
-if (bc_auto_westPoints != bc_auto_westPointsPublic) then {
-    bc_auto_westPointsPublic = bc_auto_westPoints;
-    publicVariable "bc_auto_westPointsPublic";
+if (phx_auto_westPoints != phx_auto_westPointsPublic) then {
+    phx_auto_westPointsPublic = phx_auto_westPoints;
+    publicVariable "phx_auto_westPointsPublic";
 };
-if (bc_auto_eastPoints != bc_auto_eastPointsPublic) then {
-    bc_auto_eastPointsPublic = bc_auto_eastPoints;
-    publicVariable "bc_auto_eastPointsPublic";
+if (phx_auto_eastPoints != phx_auto_eastPointsPublic) then {
+    phx_auto_eastPointsPublic = phx_auto_eastPoints;
+    publicVariable "phx_auto_eastPointsPublic";
 };
 
 // Ending conditions
-if (bc_auto_westPoints >= bc_auto_endPoints) then {
+if (phx_auto_westPoints >= phx_auto_endPoints) then {
     private _textString = format ["The BLUFOR team has reached the required amount of points to win the mission."];
-    [_textString] remoteExecCall ["bc_fnc_titleTextSector", 0];
+    [_textString] remoteExecCall ["phx_fnc_titleTextSector", 0];
     
     [_handle] call CBA_fnc_removePerFrameHandler;
 };
-if (bc_auto_eastPoints >= bc_auto_endPoints) then {
+if (phx_auto_eastPoints >= phx_auto_endPoints) then {
     private _textString = format ["The OPFOR team has reached the required amount of points to win the mission."];
-    [_textString] remoteExecCall ["bc_fnc_titleTextSector", 0];
+    [_textString] remoteExecCall ["phx_fnc_titleTextSector", 0];
     
     [_handle] call CBA_fnc_removePerFrameHandler;
 };

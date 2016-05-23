@@ -12,7 +12,7 @@ private _positionGenerations = 32;
 private _testPositionArray = [];
 for "_i" from 1 to _positionGenerations do {
     private _dir = (360 / _positionGenerations) * _i;
-    _testPositionArray pushBack (bc_auto_centerLocation getPos [bc_auto_missionScale,_dir]);
+    _testPositionArray pushBack (phx_auto_centerLocation getPos [phx_auto_missionScale,_dir]);
 };
 
 // Filter out positions that wouldn't make good starting areas
@@ -33,7 +33,7 @@ if (count _goodPositionArray > 2) then {
         if (_returnCount isEqualTo 1) then {
             private _teamOnePos = _return select 0;
             // Make sure distance between two starts is at least the distance from center point to one of the starts. Make sure the starting locations can't see each other.
-            if ( _x distance _teamOnePos > bc_auto_missionScale*1.5 ) then {
+            if ( _x distance _teamOnePos > phx_auto_missionScale*1.5 ) then {
                 if ( ([objNull, "VIEW"] checkVisibility [ [_x select 0, _x select 1, (_x select 2) + 20], [_teamOnePos select 0, _teamOnePos select 1, (_teamOnePos select 2) + 20] ]) < .1) then {
                     _return pushBack _x;
                 };

@@ -1,19 +1,8 @@
-### Process
-1. Choose a random point on the map based on the size of the map (will have to manually get sizes for all CUP maps)
-* Using the number of players, scale the area of play and mission time limit
-* Pick starting locations for both teams. Need to not be in sight of each other and should at least be three quarters of the distance to the objective away from each other.
-
 ### Info
 Type:   2 Team PvP
 Objective:  Sector / Eliminate
 
-tl;dr - A redone DTAS better suited to playing Fight Night style missions without having to make new missions every week
-
-### Parameter Ideas
-
-* AO Size Modifier:   Small (50%), Normal (100%), Large (150%)
-* Time Limits:    Very Short (50%), Short (75%), Normal (100%), Long (125%), Very Long (150%)
-* Show Enemy Starting Zones to:   Everybody, Nobody, OPFOR Only, BLUFOR Only
+tl;dr - A mission that automatically creates and sets up a fight night style mission in a random position of the map.
 
 ### Future Goals
 

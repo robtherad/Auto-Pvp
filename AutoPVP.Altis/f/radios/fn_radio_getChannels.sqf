@@ -51,7 +51,7 @@ if (!isNil "bc_ch9") then {bc_radioNoteString = bc_radioNoteString + "Channel 9:
 
 //Let player know what channels he starts on.
 bc_radioNoteString = bc_radioNoteString + "<br/>Main Channel (left ear): <font color='#90ee90'>CH " + str(bc_curChan) + "</font><br/>Alt. Channel (right ear): <font color='#90ee90'>CH " + str(bc_altChan) + "</font>";
-player createDiaryRecord ["diary", ["[BC] Radio Settings", bc_radioNoteString]];
+player createDiaryRecord ["PHX_Diary", ["Radio Settings", bc_radioNoteString]];
 
 //Next step
 bc_radHandle2 = [BC_fnc_radio_waitRadios, 0, []] call CBA_fnc_addPerFrameHandler;

@@ -18,7 +18,7 @@ for "_i" from 1 to _positionGenerations do {
 // Filter out positions that wouldn't make good starting areas
 private _goodPositionArray = [];
 {
-    if !(_x isFlatEmpty [-1, -1, 0.75, 25, 0] isEqualTo []) then {
+    if !(_x isFlatEmpty [25, -1, 0.6, 25, 0] isEqualTo []) then {
         _goodPositionArray pushBack _x;
     };
 } forEach _testPositionArray;

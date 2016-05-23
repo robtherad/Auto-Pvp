@@ -24,4 +24,4 @@
 [] execVM "f\safeStart\f_safeStart.sqf";
 
 //Call BC Template
-// [] execVM "f\bcInit.sqf";
+[] execVM "f\bcInit.sqf";

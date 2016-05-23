@@ -28,7 +28,7 @@ class RscTitles {
                 style = 0x00;
                 lineSpacing = 1;
                 x = safeZoneX + safeZoneW - 0.5 * 3 / 4;
-                y = safeZoneY + safeZoneH - 0.033;
+                y = safeZoneY + safeZoneH - 0.101;
                 h = 0.033;
                 w = 0.5 * 3 / 4; //w == h
                 size = 0.020;
@@ -39,7 +39,7 @@ class RscTitles {
                 class Attributes {
                     font = "TahomaB";
                     color = "#FFFFFF";
-                    align = "RIGHT";
+                    align = "LEFT";
                     valign = "bottom";
                     shadow = true;
                     shadowColor = "#000000";
@@ -68,8 +68,8 @@ class RscTitles {
                 style = 0x00;
                 lineSpacing = 1;
                 x = safeZoneX + safeZoneW - 0.5 * 3 / 4;
-                y = safeZoneY + safeZoneH - 0.063;
-                h = 0.03;
+                y = safeZoneY + safeZoneH - 0.067;
+                h = 0.033;
                 w = 0.5 * 3 / 4; //w == h
                 size = 0.020;
                 colorBackground[] = {0,0,0,0.85};
@@ -108,8 +108,8 @@ class RscTitles {
                 style = 0x00;
                 lineSpacing = 1;
                 x = safeZoneX + safeZoneW - 0.5 * 3 / 4;
-                y = safeZoneY + safeZoneH - 0.099;
-                h = 0.036;
+                y = safeZoneY + safeZoneH - 0.033;
+                h = 0.033;
                 w = 0.5 * 3 / 4; //w == h
                 size = 0.020;
                 colorBackground[] = {0,0,0,0.85};

@@ -8,16 +8,21 @@ bc_auto_triggerArray = [bc_auto_centralTrigger];
 // Initialize variables
 private _markerNameIterator = 0;
 bc_auto_westPoints = 0;
+bc_auto_westPointsPublic = 0;
+
 bc_auto_eastPoints = 0;
+bc_auto_eastPointsPublic = 0;
+
 bc_auto_playing = true;
 bc_auto_sectorControl = true;
 missionNamespace setVariable ["bc_auto_sectorControlActive", true, true]; // Used to check if sector control module is running or not
+private _delay = 10; // Delay between each poll
 
 if (isNil "bc_auto_quickestTime") then {
     // Time in minutes it would take to win if one team owned all points uncontested
-    bc_auto_quickestTime = ["sc_quickest_ending",25] call BIS_fnc_getParamValue;
+    bc_auto_quickestTime = ["bc_auto_sectorTime",25] call BIS_fnc_getParamValue;
 };
-bc_auto_endPoints = bc_auto_quickestTime * 60 * (count bc_auto_triggerArray);
+bc_auto_endPoints = (bc_auto_quickestTime * 60) * _delay;
 
 // Create markers for players to see whats going on
 {// forEach bc_auto_triggerArray
@@ -52,5 +57,4 @@ bc_auto_endPoints = bc_auto_quickestTime * 60 * (count bc_auto_triggerArray);
     _markerNameIterator = _markerNameIterator + 1;
 } forEach bc_auto_triggerArray;
 
-// TODO: Balance sector polling time as well as total points goal.
-[bc_fnc_watchSector, 10, [bc_auto_triggerArray]] call CBA_fnc_addPerFrameHandler;
+[bc_fnc_watchSector, _delay, [bc_auto_triggerArray, _delay]] call CBA_fnc_addPerFrameHandler;

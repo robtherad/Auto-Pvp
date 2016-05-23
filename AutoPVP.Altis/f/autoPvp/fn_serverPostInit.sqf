@@ -14,13 +14,11 @@ private _worldList = [
 ];
 
 // Get size of current map
-// TODO: Add some error handling in case the map isn't in the list
-
 private _worldIndex = _worldList find worldName;
-if (_worldIndex isEqualTo -1) then {
+if !(_worldIndex isEqualTo -1) then {
     bc_auto_worldSizeArray = _worldList select (_worldIndex + 1);
 } else {
-    bc_auto_worldSizeArray = [1000,1000]; // Unable to find correct world size.
+    bc_auto_worldSizeArray = [50000,50000]; // Unable to find correct world size.
     diag_log format ["PHX Auto PVP: (fn_serverPostInit) Unable to find world name in _worldList -- %1",worldName];
 };
 
@@ -59,7 +57,6 @@ bc_auto_missionTime = ["bc_auto_timeLimit",45] call BIS_fnc_getParamValue;
         // Create Flag
         bc_auto_flagpole = createVehicle ["Flag_White_F", bc_auto_centerLocation, [], 0, "NONE"];
         bc_auto_flagpole allowDamage false;
-        bc_auto_flagpole enableSimulationGlobal false;
         
         // Create AO Border
         bc_auto_centralMarker = createMarker ["bc_auto_AOMarker", bc_auto_centerLocation];

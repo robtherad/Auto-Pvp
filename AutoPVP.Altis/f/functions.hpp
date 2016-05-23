@@ -52,6 +52,7 @@ class autoPvpSector {
     file = "f\autoPvp\sector";
     class createSector{};
     class watchSector{};
+    class pointsDisplay{postInit = 1;};
 };
 class autoPvpplace {
     file = "f\autoPvp\placement";

@@ -1,6 +1,8 @@
 params ["_args", "_handle"];
-_args params ["_triggerList"];
-
+_args params ["_triggerList", "_delay"];
+diag_log "TEST";
+diag_log _args;
+diag_log "TEST";
 private _triggerCount = count _triggerList;
 private _markerNameIterator = 0;
 { // forEach _triggerList
@@ -21,7 +23,7 @@ private _markerNameIterator = 0;
     if (_westCount > _eastCount) then {
         _sideCurOwned = 0;
         if (_sideCurOwned isEqualTo _sidePastOwned) then {
-            bc_auto_westPoints = bc_auto_westPoints + _triggerCount;
+            bc_auto_westPoints = bc_auto_westPoints+ (1*_delay);
         } else {
             _textMarkerName setMarkerText (triggerText _x + " - BLUFOR Controlled");
             _bgMarkerName setMarkerColor "ColorBLUFOR";
@@ -34,7 +36,7 @@ private _markerNameIterator = 0;
     if (_eastCount > _westCount) then {
         _sideCurOwned = 1;
         if (_sideCurOwned isEqualTo _sidePastOwned) then {
-            bc_auto_eastPoints = bc_auto_eastPoints + _triggerCount;
+            bc_auto_eastPoints = bc_auto_eastPoints+ (1*_delay);
         } else {
             _textMarkerName setMarkerText (triggerText _x + " - OPFOR Controlled");
             _bgMarkerName setMarkerColor "ColorOPFOR";
@@ -57,10 +59,10 @@ private _markerNameIterator = 0;
         _sideCurOwned = 3;
         // For objectives that a side controls but no longer occupies
         if (_sideLastOwned isEqualTo 0) then {
-            bc_auto_westPoints = bc_auto_westPoints + _triggerCount;
+            bc_auto_westPoints = bc_auto_westPoints+ (1*_delay);
         };
         if (_sideLastOwned isEqualTo 1) then {
-            bc_auto_eastPoints = bc_auto_eastPoints + _triggerCount;
+            bc_auto_eastPoints = bc_auto_eastPoints+ (1*_delay);
         };
     };
     
@@ -74,6 +76,16 @@ private _markerNameIterator = 0;
     // Iterator for marker names
     _markerNameIterator = _markerNameIterator + 1;
 } forEach _triggerList;
+
+// Update points for clients
+if (bc_auto_westPoints != bc_auto_westPointsPublic) then {
+    bc_auto_westPointsPublic = bc_auto_westPoints;
+    publicVariable "bc_auto_westPointsPublic";
+};
+if (bc_auto_eastPoints != bc_auto_eastPointsPublic) then {
+    bc_auto_eastPointsPublic = bc_auto_eastPoints;
+    publicVariable "bc_auto_eastPointsPublic";
+};
 
 // Ending conditions
 if (bc_auto_westPoints >= bc_auto_endPoints) then {

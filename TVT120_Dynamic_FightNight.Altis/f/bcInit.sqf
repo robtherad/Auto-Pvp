@@ -1,7 +1,7 @@
 /*
-This file will start all scripts part of the default BC template. Call this file from init.sqf using the following line of code.
+This file will start all scripts part of the default phx template. Call this file from init.sqf using the following line of code.
 
-[] execVM "f\bcInit.sqf";
+[] execVM "f\phxInit.sqf";
 
 */
 //====================================================================================================

@@ -23,5 +23,5 @@
 //Call the safeStart
 [] execVM "f\safeStart\f_safeStart.sqf";
 
-//Call BC Template
-[] execVM "f\bcInit.sqf";
+//Call phx Template
+[] execVM "f\phxInit.sqf";

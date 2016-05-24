@@ -27,7 +27,7 @@ phx_auto_endPoints = (phx_auto_quickestTime * 60) * _delay;
 // Create markers for players to see whats going on
 {// forEach phx_auto_triggerArray
     // Get variables for a marker
-    private _markerName = str(_markerNameIterator) + "_BCAutoMark";
+    private _markerName = str(_markerNameIterator) + "_phxAutoMark";
     private _markerSize = triggerArea _x;
     private _markerPos = getPos _x;
 
@@ -45,7 +45,7 @@ phx_auto_endPoints = (phx_auto_quickestTime * 60) * _delay;
     };
 
     // Build marker for text
-    _markerName = str(_markerNameIterator) + "_BCAutoMarkText";
+    _markerName = str(_markerNameIterator) + "_phxAutoMarkText";
     _marker = createMarker [_markerName,_markerPos];
     _marker setMarkerShape "ICON";
     _marker setMarkerType "hd_dot";

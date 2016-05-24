@@ -10,8 +10,8 @@ private _markerNameIterator = 0;
     private _sideLastOwned = _x getVariable "phx_auto_lastOwner";
 
     // Get marker names
-    private _textMarkerName = str(_markerNameIterator) + "_BCAutoMarkText";
-    private _bgMarkerName = str(_markerNameIterator) + "_BCAutoMark";
+    private _textMarkerName = str(_markerNameIterator) + "_phxAutoMarkText";
+    private _bgMarkerName = str(_markerNameIterator) + "_phxAutoMark";
         
     private _westCount = {(alive _x) && {side group _x isEqualTo west}} count list _x;
     private _eastCount = {(alive _x) && {side group _x isEqualTo east}} count list _x;

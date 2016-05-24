@@ -4,10 +4,10 @@
 [{
     params ["_args", "_handle"];
     
-    private _missionStarted = missionNamespace getVariable ["bc_safeStartEnabled",true];
-    if (!_missionStarted && {!isNil "bc_auto_centralMarker"}) then {
+    private _missionStarted = missionNamespace getVariable ["phx_safeStartEnabled",true];
+    if (!_missionStarted && {!isNil "phx_auto_centralMarker"}) then {
         [_handle] call CBA_fnc_removePerFrameHandler;
-        [BC_fnc_core_playerBoundsCheck, 5, []] call CBA_fnc_addPerFrameHandler;
+        [phx_fnc_core_playerBoundsCheck, 5, []] call CBA_fnc_addPerFrameHandler;
     };
 }, 5, []] call CBA_fnc_addPerFrameHandler;
 
@@ -23,5 +23,5 @@
 //Call the safeStart
 [] execVM "f\safeStart\f_safeStart.sqf";
 
-//Call BC Template
-[] execVM "f\bcInit.sqf";
+//Call phx Template
+[] execVM "f\phxInit.sqf";

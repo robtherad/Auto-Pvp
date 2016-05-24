@@ -7,17 +7,17 @@ if (!hasInterface) exitWith {};
     _args params ["_var"];
     
     // Variable not set yet, exit
-    if (isNil "bc_hasGameStarted") exitWith {}; 
+    if (isNil "phx_hasGameStarted") exitWith {}; 
     
     // Variable set, game hasn't started yet. Player must not be a JIP. Remove PFH
-    if (!bc_hasGameStarted) then {
+    if (!phx_hasGameStarted) then {
         [_handle] call CBA_fnc_removePerFrameHandler; 
-        bc_didJipCheck = true;
+        phx_didJipCheck = true;
     };
     
     // Game started, player is JIP, put him in spectate
-    if ( (bc_hasGameStarted) && (isNil "bc_didJipCheck")) then {
-        bc_didJipCheck = true;
+    if ( (phx_hasGameStarted) && (isNil "phx_didJipCheck")) then {
+        phx_didJipCheck = true;
         player setPos [-1000,-1000,0];
         [player,objNull,0,0,true] call f_fnc_CamInit;
         [_handle] call CBA_fnc_removePerFrameHandler;

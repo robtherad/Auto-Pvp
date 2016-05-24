@@ -12,10 +12,10 @@
 _groups = [
 
 // ====================================================================================
-// - format: [group,groupID,BC_LongName,unitSize,radioSettings]
+// - format: [group,groupID,phx_LongName,unitSize,radioSettings]
 // group: defined in initialization field of units in editor. ex: Red_HQ = group this;
 // groupID: ID given to group for use in things such as GPS, nametags, etc. (string)
-// BC_LongName: Longer version of the groupID used in things such as the radios, etc. (string)
+// phx_LongName: Longer version of the groupID used in things such as the radios, etc. (string)
 // unitSize: Number telling what level the group is. Company = 3, Platoon = 2, Squad = 1, Fireteam = 0 (0-3)
 // radioSettings: Tells radio script which channels to set for group. [altChannel,mainChannel,[channelArray]] (array)
 //     mainChannel: Which channel the radio will start on. (1-8)
@@ -108,10 +108,10 @@ private ["_grp"];
     _grp = missionNamespace getVariable[(_x select 0),grpNull];
     if(!isNull _grp) then {
         _grp setGroupId [(_x select 1),"GroupColor0"];
-        _grp setVariable ["BC_LongName",_x select 2];
-        _grp setVariable ["bc_gps_groupSize",_x select 3];
-        _grp setVariable ["bc_radioSettings",_x select 4];
+        _grp setVariable ["phx_LongName",_x select 2];
+        _grp setVariable ["phx_gps_groupSize",_x select 3];
+        _grp setVariable ["phx_radioSettings",_x select 4];
     };
 } forEach _groups;
 
-bc_groupIDset = true;
+phx_groupIDset = true;

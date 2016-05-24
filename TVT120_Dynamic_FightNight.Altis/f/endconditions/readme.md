@@ -9,10 +9,10 @@ In `'f\endconditions\settings.sqf'` you can select which teams you would like th
 ######Time
 By default the `'description.ext'` file should have a parameter in `class Params` with a few preset timelimits marked. You can edit those values to include whatever time limit options you would like your mission to have.
 #####Disable
-To disable this module you will need to remove `class mission_runtime` from `class Params` in the `'description.ext'` file of your mission. You will also need to remove or comment out the following lines from `'f\bcInit.sqf'`:
+To disable this module you will need to remove `class mission_runtime` from `class Params` in the `'description.ext'` file of your mission. You will also need to remove or comment out the following lines from `'f\phxInit.sqf'`:
 
 ```
-    bc_end_clientWait = [BC_fnc_end_clientWait, 5, []] call CBA_fnc_addPerFrameHandler;
-    bc_end_checkTime = [BC_fnc_end_checkTime, 10, []] call CBA_fnc_addPerFrameHandler;
-    bc_end_checkAlive = [BC_fnc_end_checkAlive, 10, []] call CBA_fnc_addPerFrameHandler;
+    phx_end_clientWait = [phx_fnc_end_clientWait, 5, []] call CBA_fnc_addPerFrameHandler;
+    phx_end_checkTime = [phx_fnc_end_checkTime, 10, []] call CBA_fnc_addPerFrameHandler;
+    phx_end_checkAlive = [phx_fnc_end_checkAlive, 10, []] call CBA_fnc_addPerFrameHandler;
 ```

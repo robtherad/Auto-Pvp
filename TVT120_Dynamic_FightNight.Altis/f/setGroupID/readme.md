@@ -4,7 +4,7 @@ This module sets up groups with various variables such as names and types (`gpsm
 ###Configure
 Each group is defined in a giant array at the top of the file. Each array is separated by a comma with the last array not having a comma after it. Each array uses the following format:
 
-`[group,groupID,BC_LongName,unitSize,radioSettings]`
+`[group,groupID,phx_LongName,unitSize,radioSettings]`
 
 Each of the words above is explained below:
 
@@ -12,7 +12,7 @@ Each of the words above is explained below:
 
 `groupID` is a short string used to identify a group: `"A1"`
 
-`BC_LongName` is a longer version of `groupID` used to identify the group: `Alpha One`
+`phx_LongName` is a longer version of `groupID` used to identify the group: `Alpha One`
 
 `unitSize` is a number telling what level the group is. Company = 3, Platoon = 2, Squad = 1, Fireteam = 0 (0-3)
 

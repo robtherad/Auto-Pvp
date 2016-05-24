@@ -13,7 +13,7 @@ _orbatText = "<br />NOTE: The ORBAT below is only accurate at mission start.<br 
 <font size='18'>GROUP LEADERS + MEDICS</font><br /><br />";
 _groups = [];
 
-waitUntil { !isNil "bc_playerBaseChannel"; };
+waitUntil { !isNil "phx_playerBaseChannel"; };
 
 {
     // Add to ORBAT if side matches, group isn't already listed, and group has players
@@ -27,7 +27,7 @@ waitUntil { !isNil "bc_playerBaseChannel"; };
 {
     // Don't apply leading line breaks to first group.
     if (_forEachIndex != 0) then {
-        switch (_x getVariable ["bc_gps_groupSize",0]) do {
+        switch (_x getVariable ["phx_gps_groupSize",0]) do {
             case 0: {_orbatText = _orbatText + "  ~ "};
             case 1: {_orbatText = _orbatText + "<br /> "};
             case 2: {_orbatText = _orbatText + "<br /><br />"};
@@ -47,7 +47,7 @@ waitUntil { !isNil "bc_playerBaseChannel"; };
     };
     
     // Get group's radio frequency
-    _freq = _x getVariable ["bc_radioSettings",nil];
+    _freq = _x getVariable ["phx_radioSettings",nil];
     if (isNil "_freq") then {
         _freq = "UNK";
     } else {
@@ -67,12 +67,12 @@ waitUntil { !isNil "bc_playerBaseChannel"; };
             };
         };
         if (!(_freq isEqualTo "UNK")) then {
-            _freq = _freq + bc_playerBaseChannel;
+            _freq = _freq + phx_playerBaseChannel;
         };
     };
     
     // Add group to the ORBAT
-    _longName = _x getVariable ["BC_LongName",groupID _x];
+    _longName = _x getVariable ["phx_LongName",groupID _x];
     if (isNil "_freq") then {
         _orbatText = _orbatText + format ["<font color='%3'>(%4 men) <b>%1</b> -- %2</font>", _longName, name leader _x,_color,count (units _x)] + "<br />";
     } else {
@@ -90,4 +90,4 @@ waitUntil { !isNil "bc_playerBaseChannel"; };
 waitUntil {!isNil "PHX_Diary"};
 // Insert final result into subsection ORBAT of section Notes
 player createDiaryRecord ["PHX_Diary", ["ORBAT", _orbatText]];
-bc_writtenORBAT = true;
+phx_writtenORBAT = true;

@@ -19,18 +19,18 @@ Vehicle Markers
 
     If you want the vehicle to have a custom name instead of something weird looking like 'bluTruck' then add the following line to the vehicles initialization field in the editor to change the GPS marker name to whatever you want:
 
-        this setVariable ["bc_MarkerName", "GPS Marker Text Goes Here"];
+        this setVariable ["phx_MarkerName", "GPS Marker Text Goes Here"];
     
 Excluding groups from being marked
-    By default, all groups will have markers generated for them even if their leader doesn't have GPS. If you wish to exclude a group from having a marker generated and updated, add it's groupID to the array bc_ignoreMarkerArray on line 51. In the default template all groups have their groupIDs set by the file "f\setGroupID\f_setGroupID.sqf" so you will want to use the values defined there. Make sure when you enter a groupID you surround it with quotes since it is a string. 
+    By default, all groups will have markers generated for them even if their leader doesn't have GPS. If you wish to exclude a group from having a marker generated and updated, add it's groupID to the array phx_ignoreMarkerArray on line 51. In the default template all groups have their groupIDs set by the file "f\setGroupID\f_setGroupID.sqf" so you will want to use the values defined there. Make sure when you enter a groupID you surround it with quotes since it is a string. 
     
-    For example, if I wanted to exclude groups with the groupIDs "P", "AV", "BV", "CV" and "DV" from having markers created I would set bc_ignoreMarkerArray to:
+    For example, if I wanted to exclude groups with the groupIDs "P", "AV", "BV", "CV" and "DV" from having markers created I would set phx_ignoreMarkerArray to:
 
-    bc_ignoreMarkerArray = ["P","AV","BV","CV","DV"];
+    phx_ignoreMarkerArray = ["P","AV","BV","CV","DV"];
     
-    To make sure all groups have markers set bc_ignoreMarkerArray to be an empty array. If you have just downloaded the template off GITHUB then this should be the default setting. To do this use the following line:
+    To make sure all groups have markers set phx_ignoreMarkerArray to be an empty array. If you have just downloaded the template off GITHUB then this should be the default setting. To do this use the following line:
     
-    bc_ignoreMarkerArray = [];
+    phx_ignoreMarkerArray = [];
 */
 //Local script, dedicated server not needed
 if (isDedicated) exitWith {};
@@ -41,26 +41,26 @@ if (_useMarkers == 0) exitWith {};
 #include "settings.sqf";
 
 switch (side player) do {
-    case west: { if (!isNil "_westVehArray") then {bc_sideVehArray = _westVehArray;} else {bc_sideVehArray = nil;}; };
-    case east: { if (!isNil "_eastVehArray") then {bc_sideVehArray = _eastVehArray;} else {bc_sideVehArray = nil;}; };
-    case independent: { if (!isNil "_indVehArray") then {bc_sideVehArray = _indVehArray;} else {bc_sideVehArray = nil;}; };
-    default { bc_sideVehArray = nil; };
+    case west: { if (!isNil "_westVehArray") then {phx_sideVehArray = _westVehArray;} else {phx_sideVehArray = nil;}; };
+    case east: { if (!isNil "_eastVehArray") then {phx_sideVehArray = _eastVehArray;} else {phx_sideVehArray = nil;}; };
+    case independent: { if (!isNil "_indVehArray") then {phx_sideVehArray = _indVehArray;} else {phx_sideVehArray = nil;}; };
+    default { phx_sideVehArray = nil; };
 };
-if (!isNil "bc_sideVehArray") then {
-    bc_sideVehArray2 = [];
+if (!isNil "phx_sideVehArray") then {
+    phx_sideVehArray2 = [];
     {
         _veh = _x select 0;
         _ident = _x select 1;
-        bc_sideVehArray2 pushBack _veh;
-    } forEach bc_sideVehArray;
+        phx_sideVehArray2 pushBack _veh;
+    } forEach phx_sideVehArray;
 };
 if (!isNil "_sidesVisibleToWest" && !isNil "_sidesVisibleToEast" && !isNil "_sidesVisibleToGuer") then {
     //Set a variable that contains every side who's markers the player should be able to see
     switch (side player) do {
-        case west: { bc_sidesVisibleToPlayer = _sidesVisibleToWest; };
-        case east: { bc_sidesVisibleToPlayer = _sidesVisibleToEast; };
-        case independent: { bc_sidesVisibleToPlayer = _sidesVisibleToGuer; };
-        default { bc_sidesVisibleToPlayer = []; };
+        case west: { phx_sidesVisibleToPlayer = _sidesVisibleToWest; };
+        case east: { phx_sidesVisibleToPlayer = _sidesVisibleToEast; };
+        case independent: { phx_sidesVisibleToPlayer = _sidesVisibleToGuer; };
+        default { phx_sidesVisibleToPlayer = []; };
     };
 };
-call BC_fnc_gps_createMarks;
+call phx_fnc_gps_createMarks;

@@ -10,7 +10,7 @@ switch (_this select 0) do
     // Turn safety on
     case true:
     {
-        bc_safeStartEnabled = true;
+        phx_safeStartEnabled = true;
     
         // Delete bullets from fired weapons
         if (isNil "f_eh_safetyMan") then {
@@ -53,15 +53,15 @@ switch (_this select 0) do
         
         // Make player vulnerable
         player allowDamage true;
-        bc_safeStartEnabled = false;
+        phx_safeStartEnabled = false;
         
         // AUTO PVP CODE
             titleText ["You have been teleported to your team's starting location.\n\nGood luck.", "PLAIN DOWN", 1];
             // Returns a position that is a specified distance and compass direction from the passed position or object.
-            private _newPos = bc_auto_ownTeamStart getPos [bc_rs_distance, bc_rs_direction];
+            private _newPos = phx_auto_ownTeamStart getPos [phx_rs_distance, phx_rs_direction];
 
             // Move player
             player setPos [(_newPos select 0), (_newPos select 1)];
-            player setDir (bc_auto_ownTeamStart getDir bc_auto_centerLocation);
+            player setDir (phx_auto_ownTeamStart getDir phx_auto_centerLocation);
     };
 };

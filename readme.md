@@ -14,6 +14,8 @@ A two team PVP mission that automatically generates a fight-night style battlefi
 * Option to allow assets (HMG Pickup Trucks, HMMVs, Transport Trucks, Littlebirds, etc)
 * Allow admin to re-roll starting positions through briefing option?
 * Automatically save the randomly generated mission parameters of the last mission on the server to allow for replaying of the same mission without being insanely lucky.
+* Add parameter to change the time of day.
+* Add parameter to change the weather.
 
 ### Known Problems
 * There's a chance that one or both teams could get a start zone with no land route to the central objective. In this case, the mission would need to be restarted.

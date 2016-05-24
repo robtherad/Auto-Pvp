@@ -1,3 +1,4 @@
+// Adds a CBA PFH that waits until related variables are initialized before moving the player.
 if (!hasInterface) exitWith {};
 
 [{

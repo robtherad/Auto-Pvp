@@ -1,7 +1,7 @@
 params ["_args", "_handle"];
 
 // Check if player is out of bounds - Requires a trigger named 'phx_missionAreaTrig' to exist
-_playerInBounds = player inArea phx_auto_centralMarker;
+_playerInBounds = player inArea phx_coverMapMarker;
 if (isNil "phx_playerWarnedCount") then {phx_playerWarnedCount = 0};
 if (!_playerInBounds && {isNil "phx_isSpectator"}) then {
     phx_playerWarnedCount = phx_playerWarnedCount + 1;

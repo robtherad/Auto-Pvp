@@ -237,7 +237,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={14190.438,19.47308,16285.12};
-						angles[]={0.021328852,0.016947147,6.2751846};
+						angles[]={0.021327924,0.016947147,6.2751913};
 					};
 					side="West";
 					flags=6;
@@ -246,6 +246,7 @@ class Mission
 						skill=0.60000002;
 						init="Blue_HQ = group this;";
 						description="Platoon Lead";
+						isPlayer=1;
 						isPlayable=1;
 					};
 					id=7;
@@ -1687,7 +1688,6 @@ class Mission
 						skill=0.40000001;
 						init="Red_HQ = group this;";
 						description="Platoon Lead";
-						isPlayer=1;
 						isPlayable=1;
 					};
 					id=82;

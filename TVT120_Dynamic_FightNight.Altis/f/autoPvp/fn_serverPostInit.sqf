@@ -57,12 +57,6 @@ phx_auto_missionTime = ["phx_auto_timeLimit",45] call BIS_fnc_getParamValue;
         phx_auto_flagpole = createVehicle ["Flag_White_F", phx_auto_centerLocation, [], 0, "NONE"];
         phx_auto_flagpole allowDamage false;
         
-        // Create AO Border
-        phx_auto_centralMarker = createMarker ["phx_auto_AOMarker", phx_auto_centerLocation];
-        phx_auto_centralMarker setMarkerShape "ELLIPSE";
-        phx_auto_centralMarker setMarkerSize [phx_auto_missionScale + 50, phx_auto_missionScale + 50];
-        phx_auto_centralMarker setMarkerBrush "Border";
-        
         // Generate staging areas for both teams
         [{
             params ["_args", "_handle"];
@@ -90,6 +84,7 @@ phx_auto_missionTime = ["phx_auto_timeLimit",45] call BIS_fnc_getParamValue;
                 
                 phx_auto_preStartLocationsFound = true;
                 
+                call phx_fnc_coverMap;
                 call phx_fnc_foundPositions;
             };
             

@@ -47,6 +47,7 @@ class autoPvp {
     class chooseRandomCenter{};
     class findTeamStarts{};
     class foundPositions{};
+    class coverMap{};
 };
 class autoPvpSector {
     file = "f\autoPvp\sector";

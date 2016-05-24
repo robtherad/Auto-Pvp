@@ -5,6 +5,7 @@ if (side (group player) isEqualTo west) then {
     _text = "BLUFOR Start";
     _otherText = "OPFOR Start";
     _preText = "BLUFOR Staging Area";
+    phx_auto_otherTeamStart = phx_auto_teamStarts select 1;
     phx_auto_ownTeamStart = phx_auto_teamStarts select 0;
     _teamPreStart = phx_auto_westPreStart;
     _placeMark = "placeMark_Blue";
@@ -13,6 +14,7 @@ if (side (group player) isEqualTo west) then {
     _text = "OPFOR Start";
     _otherText = "BLUFOR Start";
     _preText = "OPFOR Staging Area";
+    phx_auto_otherTeamStart = phx_auto_teamStarts select 0;
     phx_auto_ownTeamStart = phx_auto_teamStarts select 1;
     _teamPreStart = phx_auto_eastPreStart;
     _placeMark = "placeMark_Red";
@@ -59,7 +61,7 @@ private _placeMarkPos = getMarkerPos _placeMark;
     };
     
     if (_showMarkerBool) then {
-        private _startMarkTwo = createMarkerLocal ["phx_rs_startZoneEnemy",phx_auto_ownTeamStart];
+        private _startMarkTwo = createMarkerLocal ["phx_rs_startZoneEnemy",phx_auto_otherTeamStart];
         _startMarkTwo setMarkerShapeLocal "ICON";
         _startMarkTwo setMarkerColorLocal "ColorBlack";
         _startMarkTwo setMarkerTypeLocal "hd_dot";
@@ -67,7 +69,7 @@ private _placeMarkPos = getMarkerPos _placeMark;
     };
     
     
-// Move player to Staging Area
+// Move player to Staging Area - Player gets moved to real starting area via fn_safety (f\safestart\f_fn_safety) being called with the false parameter
     // Find player distance and direction to the placement marker.
     phx_rs_distance = player distance2D _placeMarkPos;
     phx_rs_direction = ((player getDir _placeMarkPos) + (phx_auto_ownTeamStart getDir phx_auto_centerLocation)) - 180;

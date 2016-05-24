@@ -15,7 +15,6 @@ Activates other functions that need to happen after the battlefield has been dec
 
 // Send misc info
 publicVariable "phx_auto_flagpole";
-publicVariable "phx_auto_centralMarker";
 
 // Send pre-start location information
 publicVariable "phx_auto_westPreStart";

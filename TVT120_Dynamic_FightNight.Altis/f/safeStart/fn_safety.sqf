@@ -55,7 +55,7 @@ switch (_this select 0) do
         player allowDamage true;
         phx_safeStartEnabled = false;
         
-        // AUTO PVP CODE
+        // AUTO PVP CODE - Moves player to the team's real starting location. Preserves editor placement formation.
             titleText ["You have been teleported to your team's starting location.\n\nGood luck.", "PLAIN DOWN", 1];
             // Returns a position that is a specified distance and compass direction from the passed position or object.
             private _newPos = phx_auto_ownTeamStart getPos [phx_rs_distance, phx_rs_direction];

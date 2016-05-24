@@ -117,7 +117,9 @@ f_freecam_y_speed = 0;
 f_freecam_z_speed = 0;
 f_cam_tagTextSize = 0.025;
 phx_show_timeUI = true;
-
+phx_show_captureUI = false;
+phx_spect_maxDist = ["phx_auto_AOSize",500] call BIS_fnc_getParamValue;
+phx_spect_maxDist = sqrt(2*(phx_spect_maxDist^2));
 f_cam_timestamp = time;
 f_cam_muteSpectators = true;
 //diag_log "fn_camInit: Define initial values";

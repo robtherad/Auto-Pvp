@@ -1,6 +1,6 @@
 if(f_cam_mapMode == 0) exitWith {};
 disableSerialization;
-_fullmapWindow = _this select 0;
+private _fullmapWindow = _this select 0;
 _camera = ([] call f_cam_GetCurrentCam);
 _fullmapWindow drawIcon ["\A3\ui_f\data\GUI\Rsc\RscDisplayMissionEditor\iconCamera_ca.paa", [0,0,0,1],getpos _camera ,20,20,getDir _camera,"",0];
 {
@@ -23,6 +23,22 @@ _fullmapWindow drawIcon ["\A3\ui_f\data\GUI\Rsc\RscDisplayMissionEditor\iconCame
     };
 
 } foreach allunits;
+
+// Dynamic Fight Night Sector
+{
+    private _owner = _x getVariable "bc_sec_lastOwner";
+    private _color = f_cam_gray_color;
+    _color set [3,1];
+    private _iconName = triggerText _x;
+    switch (_owner) do {
+        case 0: { _color = f_cam_blufor_color; _iconName = format["%1 - BLUFOR",_iconName]; };
+        case 1: { _color = f_cam_opfor_color; _iconName = format["%1 - REDFOR",_iconName]; };
+        case 2: { _color = f_cam_gray_color; _iconName = format["%1 - CONTESTED",_iconName]; };
+        case 3: { _color = f_cam_gray_color; _iconName = format["%1 - Neutral",_iconName]; };
+        default { _color = f_cam_gray_color; _iconName = format["%1 - ERROR",_iconName]; };
+    };
+    _fullmapWindow drawIcon ["\A3\ui_f\data\map\markers\military\flag_ca.paa",_color,getpos _x ,20,20,0,_iconName,2,0.04,"TahomaB"];
+} forEach [phx_auto_centralTrigger];
 
 f_cam_fired = f_cam_fired - [objNull];
 if(f_cam_tracerOn) then {

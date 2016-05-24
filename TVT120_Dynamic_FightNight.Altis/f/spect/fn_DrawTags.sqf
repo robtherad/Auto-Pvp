@@ -35,7 +35,7 @@ if(!f_cam_toggleTags || f_cam_mapMode == 2 ) exitWith{};
             _color set [3,0.7];
         }
         else {
-            _color set [3,0.4];
+            _color set [3,0.2];
         };
         _str = _x getVariable ["f_cam_nicename",""];
         if(_str == "") then {
@@ -62,3 +62,27 @@ if(!f_cam_toggleTags || f_cam_mapMode == 2 ) exitWith{};
 
 
 } forEach allGroups;
+
+{
+    private _iconSize = 0.5;
+    private _textSize = 0.03;
+    private _distToCam = (call f_cam_GetCurrentCam) distance _x;
+    private _owner = _x getVariable "bc_sec_lastOwner";
+    private _color = f_cam_gray_color;
+    _color set [3,1];
+    private _iconName = triggerText _x;
+    switch (_owner) do {
+        case 0: { _color = f_cam_blufor_color; _iconName = format["%1 - BLUFOR",_iconName]; };
+        case 1: { _color = f_cam_opfor_color; _iconName = format["%1 - REDFOR",_iconName]; };
+        case 2: { _color = f_cam_gray_color; _iconName = format["%1 - CONTESTED",_iconName]; };
+        case 3: { _color = f_cam_gray_color; _iconName = format["%1 - Neutral",_iconName]; };
+        default { _color = f_cam_gray_color; _iconName = format["%1 - ERROR",_iconName]; };
+    };
+    
+    if (_distToCam < phx_spect_maxDist) then {
+        drawIcon3D ["\A3\ui_f\data\map\markers\military\flag_ca.paa",_color,getpos _x ,_iconSize,_iconSize,0,_iconName,2,_textSize,"TahomaB"];
+    } else {
+        _color set [3,.2];
+        drawIcon3D ["\A3\ui_f\data\map\markers\military\flag_ca.paa",_color,getpos _x ,_iconSize,_iconSize,0,_iconName,2,_textSize,"TahomaB"];
+    };
+} forEach [phx_auto_centralTrigger];

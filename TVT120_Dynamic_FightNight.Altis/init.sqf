@@ -1,7 +1,7 @@
 //init.sqf - Executed when mission is started (before briefing screen)
 
 // Add a PFH loop that will wait until safestart has ended to activate the boundary script -OR- If safestart was disabled, moves the player to their starting location and then activates the boundary script.
-private _safestartParam = ["phx_showOtherTeamStart",0] call BIS_fnc_getParamValue;
+private _safestartParam = ["f_param_mission_timer",10] call BIS_fnc_getParamValue;
 if !(_safestartParam isEqualTo 0) then {
     [{
         params ["_args", "_handle"];

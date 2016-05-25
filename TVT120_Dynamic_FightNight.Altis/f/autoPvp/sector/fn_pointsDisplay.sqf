@@ -18,13 +18,10 @@ phx_auto_eastPointsPublic = 0;
     if (phx_show_captureUI || {phx_show_timeUI}) then {
         // Figure out time left for both teams
         {       
-            // diag_log format["pointsDisplay --",];
             _x params ["_stringVar", "_timeVar", "_teamVar"];
-            // diag_log format["pointsDisplay -- _x:%1",_x];
             if (_timeVar <= (_totalCapTime*60)) then {
                 private _mins = (_totalCapTime - floor(_timeVar/60)) -1;
                 private _secs = 60-floor(_timeVar%60);
-                // diag_log format["pointsDisplay -- mins:%1 -- secs:%2",_mins,_secs];
                 if ((_secs < 10) || (_secs == 60)) then {
                     if (_secs == 60) then {
                         if (_secs == 60) then {
@@ -35,9 +32,7 @@ phx_auto_eastPointsPublic = 0;
                         _secs = "0" + str(60-floor(_timeVar%60));
                     };
                 };
-                // diag_log format["pointsDisplay -- mins:%1 -- secs:%2",_mins,_secs];
                 private _string = format ["%1 Time to Capture: %2:%3",_teamVar,_mins,_secs];
-                // diag_log format["pointsDisplay -- string:%1",_string];
                 missionNamespace setVariable [_stringVar, _string];
                 
             } else {

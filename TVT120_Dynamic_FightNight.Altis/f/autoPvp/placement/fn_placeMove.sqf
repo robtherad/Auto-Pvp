@@ -1,6 +1,5 @@
 private ["_color", "_text", "_otherText", "_preText", "_teamPreStart", "_placeMark"];
 
-diag_log format["placeMove: Running! -- phx_rs_markerArray:%1 -- bool:%2",phx_rs_markerArray,{!isNil "phx_rs_markerArray"}];
 if (!isNil "phx_placeMoveRunning") exitWith {};
 phx_placeMoveRunning = true;
 
@@ -26,19 +25,14 @@ if (side (group player) isEqualTo west) then {
 private _placeMarkPos = getMarkerPos _placeMark;
 
 // Remove markers if they have already been placed
-diag_log format["placeMove: Decision time! -- phx_rs_markerArray:%1 -- bool:%2",phx_rs_markerArray,{!isNil "phx_rs_markerArray"}];
 if (!isNil "phx_rs_markerArray") then {
-    diag_log format["placeMove: DELETE MARKERS -- phx_rs_markerArray:%1 -- bool:%2",phx_rs_markerArray,{!isNil "phx_rs_markerArray"}];
     {
-        diag_log format["placeMove: Deleting - %1 from %2",_x,phx_rs_markerArray];
         deleteMarker _x;
     } forEach phx_rs_markerArray;
     phx_rs_markerArray = [];
 } else {
-    diag_log "placeWait: First Run?";
     phx_rs_markerArray = [];
 };
-diag_log format["placeMove: After decision! -- phx_rs_markerArray:%1 -- bool:%2",phx_rs_markerArray,{!isNil "phx_rs_markerArray"}];
 
 // Pre-Start Location Markers
     // Boundary marker for starting location
@@ -105,7 +99,6 @@ diag_log format["placeMove: After decision! -- phx_rs_markerArray:%1 -- bool:%2"
     
 // Finished Moving
 phx_placeMoveRunning = nil;
-diag_log format["placeMove: Running false -- phx_rs_markerArray:%1 -- bool:%2",phx_rs_markerArray,{!isNil "phx_rs_markerArray"}];
 
 // Add a PFH that will pop up a warning for the player
 [{

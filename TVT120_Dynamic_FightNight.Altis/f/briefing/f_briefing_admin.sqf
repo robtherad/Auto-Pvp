@@ -22,29 +22,26 @@ Increase Safe Start timer by 1 minute</execute><br/>
 |- <execute expression=""f_var_mission_timer = f_var_mission_timer - 1; publicVariable 'f_var_mission_timer'; hintsilent format ['Mission Timer: %1',f_var_mission_timer];"">
 Decrease Safe Start timer by 1 minute</execute><br/>
 
-|- <execute expression=""[[[],'f\safeStart\f_safeStart.sqf'],'BIS_fnc_execVM',true]  call BIS_fnc_MP;
-hintsilent 'Safe Start started!';"">
-Begin Safe Start timer</execute><br/>
-
 |- <execute expression=""f_var_mission_timer = -1; publicVariable 'f_var_mission_timer';
 [['SafeStartMissionStarting',['Mission starting now!']],'bis_fnc_showNotification',true] call BIS_fnc_MP;
 [[false],'f_fnc_safety',playableUnits + switchableUnits] call BIS_fnc_MP;
 hintsilent 'Safe Start ended!';"">
-End Safe Start timer</execute><br/>
+End Safe Start timer and start battle</execute><br/><br/>
+";
 
-|- <execute expression=""[[true],'f_fnc_safety',playableUnits + switchableUnits] call BIS_fnc_MP;
-hintsilent 'Safety on!' "">
-Force safety on for all players</execute><br/>
+// AUTO PVP SECTION
+// SAFE START SECTION
 
-|- <execute expression=""[[false],'f_fnc_safety',playableUnits + switchableUnits] call BIS_fnc_MP;
-hintsilent 'Safety off!' "">
-Force safety off for all players</execute><br/><br/>
+_briefing = _briefing + "
+<font size='18'>AUTO PVP CONTROL</font><br/>
+|- <execute expression=""[] remoteExec ['phx_fnc_serverPostInit',2];"">
+Choose new battlefield</execute><br/>
 ";
 
 // ====================================================================================
 
 // CREATE DIARY ENTRY
 
-player createDiaryRecord ["PHX_Diary", ["F3 Admin Menu",_briefing]];
+player createDiaryRecord ["PHX_Diary", ["Admin Menu",_briefing]];
 
 // ====================================================================================

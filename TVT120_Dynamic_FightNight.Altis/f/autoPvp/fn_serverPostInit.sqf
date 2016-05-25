@@ -4,6 +4,9 @@ The PFH finds a suitable location for a battle to take place and then makes call
 */
 if (!isServer) exitWith {};
 
+if (!isNil "phx_auto_currentlyRunning") exitWith {};
+phx_auto_currentlyRunning = true;
+
 private _worldList = [
     // TODO: Get world sizes for other maps.
     // "worldName, [worldXSize, worldYSize],
@@ -11,19 +14,25 @@ private _worldList = [
     "Stratis", []
     
     // Don't forget to remove the comma after the last position array!
-];
+]; // Don't delete!
 
 // Get size of current map
 private _worldIndex = _worldList find worldName;
 if !(_worldIndex isEqualTo -1) then {
     phx_auto_worldSizeArray = _worldList select (_worldIndex + 1);
 } else {
-    phx_auto_worldSizeArray = [50000,50000]; // Unable to find correct world size.
+    phx_auto_worldSizeArray = [30000,30000]; // Unable to find correct world size.
     diag_log format ["PHX Auto PVP: (fn_serverPostInit) Unable to find world name in _worldList -- %1",worldName];
 };
 
+// Import mission params
 phx_auto_missionScale = ["phx_auto_AOSize",500] call BIS_fnc_getParamValue;
 phx_auto_missionTime = ["phx_auto_timeLimit",45] call BIS_fnc_getParamValue;
+
+// RESET - Triggers placeWait PFH on clients
+if (!isNil "phx_auto_createdMission") then {
+    [] remoteExecCall ["phx_fnc_placeWait",0];
+};
 
 // Find starting locations for teams
 // TODO: Come up with a way to make sure the central location is accessable via land by both teams
@@ -56,6 +65,10 @@ phx_auto_missionTime = ["phx_auto_timeLimit",45] call BIS_fnc_getParamValue;
         // Create Flag
         phx_auto_flagpole = createVehicle ["Flag_White_F", phx_auto_centerLocation, [], 0, "NONE"];
         phx_auto_flagpole allowDamage false;
+        
+        // Make sure these variables are nil so they can be searched for again in the following CBA PFH.
+        phx_auto_westPreStart = nil;
+        phx_auto_eastPreStart = nil;
         
         // Generate staging areas for both teams
         [{

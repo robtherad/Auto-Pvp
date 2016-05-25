@@ -1,10 +1,16 @@
 class Params {
     // Time of Day
     class phx_core_timeOfDay {
-        title = "Time of Day:"
+        title = "Time of Day:";
         values[] = {-1, 0, 1, 2, 3};
-        texts[] = {"Mission Time (DEFAULT)", "Dawn", "Noon", "Dusk", "Midnight"};
-        default = 3;
+        texts[] = {"Mission Time (DEFAULT)", "Sunrise", "Noon", "Sunset", "Midnight"};
+        default = -1;
+    };
+    class phx_core_weatherSettings {
+        title = "Time of Day:";
+        values[] = {-1, 0, 1, 2, 3, 4};
+        texts[] = {"Mission Weather (DEFAULT)", "Light Fog", "Fog", "Light Rain", "Rain", "Clear"};
+        default = 0;
     };
     
     // Safestart

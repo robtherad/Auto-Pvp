@@ -5,6 +5,7 @@ class core {
     class core_showTags{};
     class core_addRatingEH{postInit = 1;};
     class core_playerBoundsCheck{};
+    class core_setDate{postInit = 1;};
 };
 class radios {
     file = "f\radios";

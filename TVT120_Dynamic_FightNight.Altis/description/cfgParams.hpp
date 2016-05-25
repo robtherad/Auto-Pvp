@@ -1,4 +1,13 @@
 class Params {
+    // Time of Day
+    class phx_core_timeOfDay {
+        title = "Time of Day:"
+        values[] = {-1, 0, 1, 2, 3};
+        texts[] = {"Mission Time (DEFAULT)", "Dawn", "Noon", "Dusk", "Midnight"};
+        default = 3;
+    };
+    
+    // Safestart
     class f_param_mission_timer {
         title = "Safe Start (Minutes)";
         values[] = {0,1,2,3,4,5,6,7,8,9,10,15};

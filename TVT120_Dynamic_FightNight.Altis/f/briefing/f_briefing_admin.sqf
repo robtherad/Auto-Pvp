@@ -34,8 +34,8 @@ End Safe Start timer and start battle</execute><br/><br/>
 
 _briefing = _briefing + "
 <font size='18'>AUTO PVP CONTROL</font><br/>
-|- <execute expression=""[] remoteExec ['phx_fnc_serverPostInit',2];"">
-Choose new battlefield</execute><br/>
+|- <execute expression=""if (getClientStateNumber isEqualTo 9) then {[] remoteExec ['phx_fnc_serverPostInit',2];} else {systemChat 'You need to be at the briefing screen to choose a new battlefield.';};"">
+Choose new battlefield (BRIEFING SCREEN ONLY)</execute><br/>
 ";
 
 // ====================================================================================

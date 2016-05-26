@@ -1,6 +1,12 @@
 // Shades out the map outside of the AO. Also creates the marker used for the mission boundary.
 if (!isServer) exitWith {};
 
+if (!isNil "phx_coveredMap") then {
+    {
+        deleteMarker _x;
+    } forEach ["bis_fnc_moduleCoverMap_border", "bis_fnc_moduleCoverMap_0", "bis_fnc_moduleCoverMap_90", "bis_fnc_moduleCoverMap_180", "bis_fnc_moduleCoverMap_270"];
+};
+
 // Initialize Variables
 private _pos = phx_auto_centerLocation;
 private _posX = phx_auto_centerLocation select 0;
@@ -42,3 +48,5 @@ for "_i" from 0 to 270 step 90 do {
     _marker setmarkerbrush "Solid";
     _marker setmarkercolor "colorBlack";
 };
+
+phx_coveredMap = true;

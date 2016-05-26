@@ -1,5 +1,8 @@
 private ["_color", "_text", "_otherText", "_preText", "_teamPreStart", "_placeMark"];
 
+if (!isNil "phx_placeMoveRunning") exitWith {};
+phx_placeMoveRunning = true;
+
 if (side (group player) isEqualTo west) then {
     _color = "ColorBLUFOR";
     _text = "BLUFOR Start";
@@ -21,30 +24,42 @@ if (side (group player) isEqualTo west) then {
 };
 private _placeMarkPos = getMarkerPos _placeMark;
 
+// Remove markers if they have already been placed
+if (!isNil "phx_rs_markerArray") then {
+    {
+        deleteMarker _x;
+    } forEach phx_rs_markerArray;
+    phx_rs_markerArray = [];
+} else {
+    phx_rs_markerArray = [];
+};
 
 // Pre-Start Location Markers
     // Boundary marker for starting location
-    private _startMark = createMarkerLocal ["phx_rs_preStartZone",_teamPreStart];
-    _startMark setMarkerShapeLocal "ELLIPSE";
-    _startMark setMarkerSizeLocal [50, 50];
-    _startMark setMarkerBrushLocal "SolidBorder";
-    _startMark setMarkerColorLocal _color;
+    private _marker = createMarkerLocal ["phx_rs_preStartZone",_teamPreStart];
+    _marker setMarkerShapeLocal "ELLIPSE";
+    _marker setMarkerSizeLocal [50, 50];
+    _marker setMarkerBrushLocal "SolidBorder";
+    _marker setMarkerColorLocal _color;
+    phx_rs_markerArray pushBack _marker;
 
     // Text marker for starting location
-    private _startMarkTwo = createMarkerLocal ["phx_rs_preStartZoneTwo",_teamPreStart];
-    _startMarkTwo setMarkerShapeLocal "ICON";
-    _startMarkTwo setMarkerColorLocal "ColorBlack";
-    _startMarkTwo setMarkerTypeLocal "hd_dot";
-    _startMarkTwo setMarkerTextLocal _preText;
+    _marker = createMarkerLocal ["phx_rs_preStartZoneTwo",_teamPreStart];
+    _marker setMarkerShapeLocal "ICON";
+    _marker setMarkerColorLocal "ColorBlack";
+    _marker setMarkerTypeLocal "hd_dot";
+    _marker setMarkerTextLocal _preText;
+    phx_rs_markerArray pushBack _marker;
 
     
 // Starting Location Markers
     // Own Team's Marker
-    private _startMarkTwo = createMarkerLocal ["phx_rs_startZoneFriendly",phx_auto_ownTeamStart];
-    _startMarkTwo setMarkerShapeLocal "ICON";
-    _startMarkTwo setMarkerColorLocal "ColorBlack";
-    _startMarkTwo setMarkerTypeLocal "hd_dot";
-    _startMarkTwo setMarkerTextLocal _text;
+    _marker = createMarkerLocal ["phx_rs_startZoneFriendly",phx_auto_ownTeamStart];
+    _marker setMarkerShapeLocal "ICON";
+    _marker setMarkerColorLocal "ColorBlack";
+    _marker setMarkerTypeLocal "hd_dot";
+    _marker setMarkerTextLocal _text;
+    phx_rs_markerArray pushBack _marker;
 
     // Create marker for other team's Starting Location
     private _showMarkerInt = ["phx_showOtherTeamStart",0] call BIS_fnc_getParamValue;
@@ -61,27 +76,30 @@ private _placeMarkPos = getMarkerPos _placeMark;
     };
     
     if (_showMarkerBool) then {
-        private _startMarkTwo = createMarkerLocal ["phx_rs_startZoneEnemy",phx_auto_otherTeamStart];
-        _startMarkTwo setMarkerShapeLocal "ICON";
-        _startMarkTwo setMarkerColorLocal "ColorBlack";
-        _startMarkTwo setMarkerTypeLocal "hd_dot";
-        _startMarkTwo setMarkerTextLocal _otherText;
+        private _marker = createMarkerLocal ["phx_rs_startZoneEnemy",phx_auto_otherTeamStart];
+        _marker setMarkerShapeLocal "ICON";
+        _marker setMarkerColorLocal "ColorBlack";
+        _marker setMarkerTypeLocal "hd_dot";
+        _marker setMarkerTextLocal _otherText;
+        phx_rs_markerArray pushBack _marker;
     };
-    
     
 // Move player to Staging Area - Player gets moved to real starting area via fn_safety (f\safestart\f_fn_safety) being called with the false parameter
     // Find player distance and direction to the placement marker.
-    phx_rs_distance = player distance2D _placeMarkPos;
-    phx_rs_direction = ((player getDir _placeMarkPos) + (phx_auto_ownTeamStart getDir phx_auto_centerLocation)) - 180;
-
+    if (isNil "phx_rs_distance") then {
+        phx_rs_distance = player distance2D _placeMarkPos;
+        phx_rs_direction = ((player getDir _placeMarkPos) + (phx_auto_ownTeamStart getDir phx_auto_centerLocation)) - 180;
+    };
     // Returns a position that is a specified distance and compass direction from the passed position or object.
     private _newPos = _teamPreStart getPos [phx_rs_distance, phx_rs_direction];
 
     // Move player
     player setPos [(_newPos select 0), (_newPos select 1)];
     player setDir (_teamPreStart getDir phx_auto_centerLocation);
-
     
+// Finished Moving
+phx_placeMoveRunning = nil;
+
 // Add a PFH that will pop up a warning for the player
 [{
     params ["_args", "_handle"];

@@ -28,9 +28,16 @@ phx_auto_endPoints = (phx_auto_quickestTime * 60) * _delay;
 {// forEach phx_auto_triggerArray
     // Get variables for a marker
     private _markerName = str(_markerNameIterator) + "_phxAutoMark";
+    private _markerNameText = str(_markerNameIterator) + "_phxAutoMarkText";
     private _markerSize = triggerArea _x;
     private _markerPos = getPos _x;
 
+    // Just in case this script has already been run
+    if (!isNil "phx_auto_sectorsAlreadyCreated") then {
+        deleteMarker _markerName;
+        deleteMarker _markerNameText;
+    };
+    
     // Build marker for area
     private _marker = createMarker [_markerName,_markerPos];
     _marker setMarkerSize [_markerSize select 0,_markerSize select 1];
@@ -45,16 +52,19 @@ phx_auto_endPoints = (phx_auto_quickestTime * 60) * _delay;
     };
 
     // Build marker for text
-    _markerName = str(_markerNameIterator) + "_phxAutoMarkText";
-    _marker = createMarker [_markerName,_markerPos];
+    _marker = createMarker [_markerNameText,_markerPos];
     _marker setMarkerShape "ICON";
     _marker setMarkerType "hd_dot";
     _marker setMarkerText (triggerText _x + " - Neutral");
 
     // Set sector status to neutral for later
-    _x setVariable ["phx_auto_curOwner",3];
+    _x setVariable ["phx_auto_curOwner",3,true];
     _x setVariable ["phx_auto_lastOwner",3];
     _markerNameIterator = _markerNameIterator + 1;
 } forEach phx_auto_triggerArray;
 
-[phx_fnc_watchSector, _delay, [phx_auto_triggerArray, _delay]] call CBA_fnc_addPerFrameHandler;
+if (isNil "phx_auto_sectorsAlreadyCreated") then {
+    phx_auto_sectorsAlreadyCreated = true;
+
+    [phx_fnc_watchSector, _delay, [phx_auto_triggerArray, _delay]] call CBA_fnc_addPerFrameHandler;
+};

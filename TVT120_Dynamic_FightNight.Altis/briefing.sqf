@@ -19,7 +19,11 @@ player createDiaryRecord ["PHX_Diary", ["Bug Reports", "  This mission uses the 
 // The following block of code executes only if the player is the current host
 // it automatically includes a file which contains the appropriate briefing data.
 
-if (serverCommandAvailable "#kick") then {
+if (isMultiplayer) then {
+    if (serverCommandAvailable "#kick") then {
+        #include "f\briefing\f_briefing_admin.sqf"
+    };
+} else {
     #include "f\briefing\f_briefing_admin.sqf"
 };
 // ====================================================================================
@@ -58,6 +62,6 @@ _settingsBrief = _settingsBrief + "
 Toggle Capture Timer UI</execute><br/>
 ";
 
-player createDiaryRecord ["diary", ["PHX Settings Menu",_settingsBrief]];
+player createDiaryRecord ["PHX_Diary", ["PHX Settings Menu",_settingsBrief]];
 
 // ====================================================================================

@@ -22,10 +22,7 @@ Increase Safe Start timer by 1 minute</execute><br/>
 |- <execute expression=""f_var_mission_timer = f_var_mission_timer - 1; publicVariable 'f_var_mission_timer'; hintsilent format ['Mission Timer: %1',f_var_mission_timer];"">
 Decrease Safe Start timer by 1 minute</execute><br/>
 
-|- <execute expression=""f_var_mission_timer = -1; publicVariable 'f_var_mission_timer';
-[['SafeStartMissionStarting',['Mission starting now!']],'bis_fnc_showNotification',true] call BIS_fnc_MP;
-[[false],'f_fnc_safety',playableUnits + switchableUnits] call BIS_fnc_MP;
-hintsilent 'Safe Start ended!';"">
+|- <execute expression=""if (!isNil 'phx_safeStartEnabled') then { if (phx_safeStartEnabled) then {f_var_mission_timer = -1; publicVariable 'f_var_mission_timer'; [['SafeStartMissionStarting',['Mission starting now!']],'bis_fnc_showNotification',true] call BIS_fnc_MP; [[false],'f_fnc_safety',playableUnits + switchableUnits] call BIS_fnc_MP; hintsilent 'Safe Start ended!';} else {systemChat 'Safestart is already over.';}; };"">
 End Safe Start timer and start battle</execute><br/><br/>
 ";
 
@@ -33,9 +30,12 @@ End Safe Start timer and start battle</execute><br/><br/>
 // SAFE START SECTION
 
 _briefing = _briefing + "
-<font size='18'>AUTO PVP CONTROL</font><br/>
+<font size='18'>AUTO PVP CONTROL (BRIEFING SCREEN ONLY)</font><br/>
 |- <execute expression=""if (getClientStateNumber isEqualTo 9) then {[] remoteExec ['phx_fnc_serverPostInit',2];} else {systemChat 'You need to be at the briefing screen to choose a new battlefield.';};"">
-Choose new battlefield (BRIEFING SCREEN ONLY)</execute><br/>
+Choose new battlefield</execute><br/>
+
+|- <execute expression=""if (getClientStateNumber isEqualTo 9) then {[true] remoteExec ['phx_fnc_serverPostInit',2];} else {systemChat 'You need to be at the briefing screen to choose a new battlefield.';};"">
+Use battlefield which was last played on server</execute><br/>
 ";
 
 // ====================================================================================

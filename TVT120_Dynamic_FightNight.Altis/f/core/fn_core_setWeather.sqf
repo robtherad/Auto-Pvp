@@ -1,7 +1,6 @@
 date params ["_year", "_month", "_day", "_hour", "_minute"];
 
-_paramTime = ["phx_core_timeOfDay",-1] call BIS_fnc_getParamValue;
-// texts[] = {"Mission Weathe (DEFAULT)", "Light Fog", "Fog", "Light Rain", "Rain"};
+_paramTime = ["phx_core_weatherSettings",-1] call BIS_fnc_getParamValue;
 if !(_paramTime isEqualTo -1) then {
     switch (_paramTime) do {
         case 0: { 0 setFog 0.4; }; // Light Fog

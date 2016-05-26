@@ -63,6 +63,8 @@ phx_auto_endPoints = (phx_auto_quickestTime * 60) * _delay;
     _markerNameIterator = _markerNameIterator + 1;
 } forEach phx_auto_triggerArray;
 
-phx_auto_sectorsAlreadyCreated = true;
+if (isNil "phx_auto_sectorsAlreadyCreated") then {
+    phx_auto_sectorsAlreadyCreated = true;
 
-[phx_fnc_watchSector, _delay, [phx_auto_triggerArray, _delay]] call CBA_fnc_addPerFrameHandler;
+    [phx_fnc_watchSector, _delay, [phx_auto_triggerArray, _delay]] call CBA_fnc_addPerFrameHandler;
+};

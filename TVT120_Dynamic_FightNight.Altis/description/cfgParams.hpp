@@ -10,7 +10,7 @@ class Params {
         title = "Time of Day:";
         values[] = {-1, 0, 1, 2, 3, 4};
         texts[] = {"Mission Weather (DEFAULT)", "Light Fog", "Fog", "Light Rain", "Rain", "Clear"};
-        default = 0;
+        default = -1;
     };
     
     // Safestart

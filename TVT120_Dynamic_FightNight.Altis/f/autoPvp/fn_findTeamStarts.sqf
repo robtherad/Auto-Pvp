@@ -5,7 +5,7 @@ Returns: An array of suitable locations for teams to start at. Can return 0, 1, 
 */
 
 // Scale the amount of generated positions with the size of the mission area
-private _positionGenerations = 32;
+private _positionGenerations = 48;
 
 
 // Get a number of positions surrounding the mission's center that could be useful as starting locations
@@ -18,7 +18,7 @@ for "_i" from 1 to _positionGenerations do {
 // Filter out positions that wouldn't make good starting areas
 private _goodPositionArray = [];
 {
-    if !(_x isFlatEmpty [25, -1, 0.6, 25, 0] isEqualTo []) then {
+    if !(_x isFlatEmpty [7, -1, -1, -1, 0] isEqualTo []) then {
         _goodPositionArray pushBack _x;
     };
 } forEach _testPositionArray;
@@ -34,7 +34,7 @@ if (count _goodPositionArray > 2) then {
             private _teamOnePos = _return select 0;
             // Make sure distance between two starts is at least the distance from center point to one of the starts. Make sure the starting locations can't see each other.
             if ( _x distance _teamOnePos > phx_auto_missionScale*1.5 ) then {
-                if ( ([objNull, "VIEW"] checkVisibility [ [_x select 0, _x select 1, (_x select 2) + 20], [_teamOnePos select 0, _teamOnePos select 1, (_teamOnePos select 2) + 20] ]) < .1) then {
+                if ( ([objNull, "VIEW"] checkVisibility [_x,_teamOnePos]) < .1) then {
                     _return pushBack _x;
                 };
             };

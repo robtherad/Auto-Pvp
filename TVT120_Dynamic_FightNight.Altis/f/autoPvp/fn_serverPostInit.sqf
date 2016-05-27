@@ -13,15 +13,15 @@ phx_auto_currentlyRunning = true;
 
 if (!isNil "_useOldCoordinates") then {
     if (_useOldCoordinates isEqualTo true) then {
-        _center = profileNamespace getVariable ["phx_auto_centerLocation_saved",nil];
+        _center = profileNamespace getVariable [format["phx_auto_centerLocation_saved_%1",worldName],nil];
         if !(isNil "_center") then {
             phx_auto_useOldCoordinates = true;
             phx_auto_centerLocation = _center;
-            phx_auto_teamStarts = profileNamespace getVariable "phx_auto_teamStarts_saved";
-            phx_auto_westPreStart = profileNamespace getVariable "phx_auto_westPreStart_saved";
-            phx_auto_eastPreStart = profileNamespace getVariable "phx_auto_eastPreStart_saved";
+            phx_auto_teamStarts = profileNamespace getVariable format["phx_auto_teamStarts_saved_%1",worldName];
+            phx_auto_westPreStart = profileNamespace getVariable format["phx_auto_westPreStart_saved_%1",worldName];
+            phx_auto_eastPreStart = profileNamespace getVariable format["phx_auto_eastPreStart_saved_%1",worldName];
         } else {
-            "[PHX] - No variables from previous playthroughs saved on server." remoteExec ["systemChat",0];
+            "[PHX] - No variables from previous playthroughs saved on server. Generating new one." remoteExec ["systemChat",0];
         };
     };
 };
@@ -53,6 +53,8 @@ if (!isNil "phx_auto_createdMission") then {
     [] remoteExecCall ["phx_fnc_placeWait",0];
 };
 
+phx_auto_searchAttempts = 0;
+
 // Find starting locations for teams
 // TODO: Come up with a way to make sure the central location is accessable via land by both teams
 [{
@@ -60,9 +62,10 @@ if (!isNil "phx_auto_createdMission") then {
     
     
     if (isNil "phx_auto_useOldCoordinates") then {
-        phx_auto_centerLocation = call phx_fnc_chooseRandomCenter;
+        phx_auto_centerLocation = [[1, -1, -1, 0, 0]] call phx_fnc_chooseRandomCenter;
         phx_auto_teamStarts = [phx_auto_centerLocation, phx_auto_missionScale] call phx_fnc_findTeamStarts;
         
+        phx_auto_searchAttempts = phx_auto_searchAttempts + 1;
         /*
         // TODO: Figure out why this doesn't work. Game just hangs.
         // Break out of infinite loop and end mission if the script can't find a suitable play area in a reasonable amount of time.
@@ -78,8 +81,6 @@ if (!isNil "phx_auto_createdMission") then {
             
         if (count phx_auto_teamStarts isEqualTo 2) then {
             [_handle] call CBA_fnc_removePerFrameHandler;
-            
-            phx_auto_searchAttempts = nil;
             
             phx_auto_markerArray = [];
             
@@ -97,10 +98,10 @@ if (!isNil "phx_auto_createdMission") then {
                 
                 // Generate pre-start locations for teams
                 if (isNil "phx_auto_westPreStart") then {
-                    phx_auto_westPreStart = call phx_fnc_chooseRandomCenter;
+                    phx_auto_westPreStart = [[7, -1, -1, 0, 0]] call phx_fnc_chooseRandomCenter;
                 };
                 if (isNil "phx_auto_eastPreStart") then {
-                    phx_auto_eastPreStart = call phx_fnc_chooseRandomCenter;
+                    phx_auto_eastPreStart = [[7, -1, -1, 0, 0]] call phx_fnc_chooseRandomCenter;
                 };
                 
                 // Make sure the locations aren't too close to each other or to the actual play area
@@ -108,7 +109,7 @@ if (!isNil "phx_auto_createdMission") then {
                 if ( (phx_auto_westPreStart distance phx_auto_centerLocation) < _acceptableDistance ) then {
                     phx_auto_westPreStart = nil;
                 };
-                if ( (phx_auto_eastPreStart distance phx_auto_centerLocation) < _acceptableDistance && {(phx_auto_eastPreStart distance phx_auto_centerLocation) < 750}) then {
+                if ( (phx_auto_eastPreStart distance phx_auto_centerLocation) < _acceptableDistance && {(phx_auto_eastPreStart distance phx_auto_centerLocation) < 1500}) then {
                     phx_auto_eastPreStart = nil;
                 };
                 

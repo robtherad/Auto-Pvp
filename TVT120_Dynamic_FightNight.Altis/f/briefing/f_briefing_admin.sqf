@@ -31,10 +31,10 @@ End Safe Start timer and start battle</execute><br/><br/>
 
 _briefing = _briefing + "
 <font size='18'>AUTO PVP CONTROL (BRIEFING SCREEN ONLY)</font><br/>
-|- <execute expression=""if (getClientStateNumber isEqualTo 9) then {[] remoteExec ['phx_fnc_serverPostInit',2];} else {systemChat 'You need to be at the briefing screen to choose a new battlefield.';};"">
+|- <execute expression=""if (getClientStateNumber isEqualTo 9) then {systemChat format['[%1]: Finding new battlefield...',diag_tickTime];[] remoteExec ['phx_fnc_serverPostInit',2];} else {systemChat 'You need to be at the briefing screen to choose a new battlefield.';};"">
 Choose new battlefield</execute><br/>
 
-|- <execute expression=""if (getClientStateNumber isEqualTo 9) then {[true] remoteExec ['phx_fnc_serverPostInit',2];} else {systemChat 'You need to be at the briefing screen to choose a new battlefield.';};"">
+|- <execute expression=""if (getClientStateNumber isEqualTo 9) then {systemChat format['[%1]: Attempting to load last played mission.',diag_tickTime];[true] remoteExec ['phx_fnc_serverPostInit',2];} else {systemChat 'You need to be at the briefing screen to choose a new battlefield.';};"">
 Use battlefield which was last played on server</execute><br/>
 ";
 

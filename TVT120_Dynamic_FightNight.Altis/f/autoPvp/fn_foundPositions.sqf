@@ -40,10 +40,10 @@ phx_auto_useOldCoordinates = nil; // Reset the variable that makes serverPostIni
     if (getClientStateNumber isEqualTo 10) then {
         [_handle] call CBA_fnc_removePerFrameHandler;
 
-        profileNamespace setVariable ["phx_auto_centerLocation_saved", phx_auto_centerLocation];
-        profileNamespace setVariable ["phx_auto_teamStarts_saved", phx_auto_teamStarts];
-        profileNamespace setVariable ["phx_auto_westPreStart_saved", phx_auto_westPreStart];
-        profileNamespace setVariable ["phx_auto_eastPreStart_saved", phx_auto_eastPreStart];
+        profileNamespace setVariable [format["phx_auto_centerLocation_saved_%1",worldName], phx_auto_centerLocation];
+        profileNamespace setVariable [format["phx_auto_teamStarts_saved_%1",worldName], phx_auto_teamStarts];
+        profileNamespace setVariable [format["phx_auto_westPreStart_saved_%1",worldName], phx_auto_westPreStart];
+        profileNamespace setVariable [format["phx_auto_eastPreStart_saved_%1",worldName], phx_auto_eastPreStart];
         
         saveProfileNamespace;
     };

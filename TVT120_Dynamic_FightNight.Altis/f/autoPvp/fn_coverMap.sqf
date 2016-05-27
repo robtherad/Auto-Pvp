@@ -50,3 +50,8 @@ for "_i" from 0 to 270 step 90 do {
 };
 
 phx_coveredMap = true;
+
+// Update marker locations again in case they don't update when deleted/recreated?
+{
+    _x setMarkerPos (getMarkerPos _x);
+} forEach ["bis_fnc_moduleCoverMap_border", "bis_fnc_moduleCoverMap_0", "bis_fnc_moduleCoverMap_90", "bis_fnc_moduleCoverMap_180", "bis_fnc_moduleCoverMap_270"];

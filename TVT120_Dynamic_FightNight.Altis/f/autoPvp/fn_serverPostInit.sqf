@@ -48,9 +48,9 @@ if !(_worldIndex isEqualTo -1) then {
 phx_auto_missionScale = ["phx_auto_AOSize",500] call BIS_fnc_getParamValue;
 phx_auto_missionTime = ["phx_auto_timeLimit",45] call BIS_fnc_getParamValue;
 
-// RESET - Triggers placeWait PFH on clients
+// RESET - Triggers placeMove on clients
 if (!isNil "phx_auto_createdMission") then {
-    [] remoteExecCall ["phx_fnc_placeWait",0];
+    [] remoteExecCall ["phx_fnc_placeMove",0];
 };
 
 phx_auto_searchAttempts = 0;

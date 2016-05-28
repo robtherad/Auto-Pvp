@@ -60,6 +60,5 @@ class autoPvpSector {
 };
 class autoPvpplace {
     file = "f\autoPvp\placement";
-    class placeMove{};
-    class placeWait{postInit = 1;};
+    class placeMove{postInit = 1;};
 };

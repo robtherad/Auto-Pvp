@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={12803.547,67.860062,13487.386};
-		dir[]={0.87837547,-0.45863637,0.13470241};
-		up[]={0.45334381,0.88861591,0.069522537};
-		aside[]={0.15158381,-2.4063047e-007,-0.98846239};
+		pos[]={12905.62,51.331078,13450.121};
+		dir[]={0,-0.70710683,0.70710683};
+		up[]={0,0.70710677,0.70710677};
+		aside[]={0.99999994,0,0};
 	};
 };
 binarizationWanted=0;
@@ -1662,8 +1662,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={11609.328,23.56406,11982.789};
-						angles[]={0.0039967569,6.2755232,6.2778587};
+						position[]={11609.328,23.564058,11982.789};
+						angles[]={0.0039968039,6.2755232,6.2778621};
 					};
 					side="East";
 					flags=6;
@@ -1672,10 +1672,12 @@ class Mission
 						skill=0.40000001;
 						init="Red_HQ = group this;";
 						description="Platoon Lead";
+						isPlayer=1;
 						isPlayable=1;
 					};
 					id=82;
 					type="O_officer_F";
+					atlOffset=-1.9073486e-006;
 				};
 				class Item1
 				{
@@ -1745,6 +1747,7 @@ class Mission
 			{
 			};
 			id=81;
+			atlOffset=-1.9073486e-006;
 		};
 		class Item18
 		{
@@ -3148,6 +3151,7 @@ class Mission
 			{
 				position[]={12905.62,26.331078,13475.121};
 			};
+			isPlayable=1;
 			id=165;
 			type="VirtualSpectator_F";
 			atlOffset=-3.6239624e-005;
@@ -3239,6 +3243,7 @@ class Mission
 				position[]={12907.772,26.265276,13473.037};
 				angles[]={6.1821971,0,6.2738504};
 			};
+			isPlayable=1;
 			id=166;
 			type="VirtualSpectator_F";
 			class CustomAttributes
@@ -3328,6 +3333,7 @@ class Mission
 			{
 				position[]={12910.442,26.160316,13471.794};
 			};
+			isPlayable=1;
 			id=167;
 			type="VirtualSpectator_F";
 			atlOffset=0.045953751;
@@ -3418,7 +3424,7 @@ class Mission
 			{
 				position[]={12912.505,26.057344,13470.967};
 			};
-			isPlayer=1;
+			isPlayable=1;
 			id=168;
 			type="VirtualSpectator_F";
 			atlOffset=0.045999527;

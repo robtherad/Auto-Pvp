@@ -16,7 +16,7 @@ for "_i" from 1 to 4 do {player addItemToVest "CUP_30Rnd_TE1_Green_Tracer_545x39
 player addBackpack "CUP_B_CivPack_WDL";
 for "_i" from 1 to 11 do {player addItemToBackpack "CUP_30Rnd_545x39_AK_M";};
 player addHeadgear "CUP_H_SLA_Helmet";
-
+player addItemToBackpack "CUP_RPG18_M";
 
 player addWeapon "CUP_arifle_AK107";
 player addWeapon "CUP_launch_RPG18";

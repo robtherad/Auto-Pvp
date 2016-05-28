@@ -17,6 +17,7 @@ for "_i" from 1 to 2 do {player addItemToVest "HandGrenade";};
 player addBackpack "CUP_B_USMC_MOLLE";
 for "_i" from 1 to 6 do {player addItemToBackpack "CUP_30Rnd_556x45_Stanag";};
 player addHeadgear "CUP_H_USMC_HelmetWDL";
+player addItemToBackpack "CUP_M136_M";
 
 player addWeapon "CUP_arifle_M16A4_Base";
 player addWeapon "CUP_launch_M136";

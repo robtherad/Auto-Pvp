@@ -6,8 +6,6 @@ if (!isServer) exitWith {};
 
 private _useOldCoordinates = param [0, nil];
 
-diag_log format["serverPostInit: %1",_this];
-
 if (!isNil "phx_auto_currentlyRunning") exitWith {};
 phx_auto_currentlyRunning = true;
 

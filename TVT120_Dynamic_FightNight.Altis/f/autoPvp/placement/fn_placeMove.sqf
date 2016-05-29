@@ -77,7 +77,7 @@ if (!hasInterface) exitWith {};
             phx_rs_markerArray pushBack _marker;
 
             // Create marker for other team's Starting Location
-            private _showMarkerInt = ["phx_showOtherTeamStart",0] call BIS_fnc_getParamValue;
+            private _showMarkerInt = ["phx_auto_showOtherTeamStart",0] call BIS_fnc_getParamValue;
             private _showMarkerBool = false;
             
             if (_showMarkerInt isEqualTo 1 && {(side group player) isEqualTo west}) then {

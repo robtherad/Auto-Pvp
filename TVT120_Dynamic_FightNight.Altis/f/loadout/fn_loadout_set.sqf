@@ -11,6 +11,18 @@ s_loadout_gps = ["s_loadout_gps",1] call BIS_fnc_getParamValue;
 if (!isNil "loadout_assigned") exitWith {};
 loadout_assigned = false;
 
+// Remove Stuff
+removeAllWeapons player;
+removeAllItems player;
+removeAllAssignedItems player;
+removeUniform player;
+removeVest player;
+removeBackpack player;
+removeHeadgear player;
+removeGoggles player;
+
+// TODO: CBA 2.40 - Execute the adding of loadouts on next frame to prevent inventory desync
+
 switch (_char) do {
  //Red - CSAT/EAST - OPF_F
  case "O_officer_F": {[] call compile preprocessFileLineNumbers "f\loadout\units\Red_PL.sqf"};

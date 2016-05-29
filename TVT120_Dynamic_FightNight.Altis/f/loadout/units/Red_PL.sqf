@@ -1,33 +1,37 @@
-removeAllWeapons player;
-removeAllItems player;
-removeAllAssignedItems player;
-removeUniform player;
-removeVest player;
-removeBackpack player;
-removeHeadgear player;
-removeGoggles player;
+comment "Exported from Arsenal by robtherad";
 
-player forceAddUniform "CUP_U_O_CHDKZ_Kam_02";
-for "_i" from 1 to 2 do {player addItemToUniform "FirstAidKit";};
-for "_i" from 1 to 4 do {player addItemToUniform "SmokeShell";};
-player addVest "CUP_V_BAF_Osprey_Mk2_DPM_Scout";
-for "_i" from 1 to 2 do {player addItemToVest "HandGrenade";};
-for "_i" from 1 to 5 do {player addItemToVest "CUP_30Rnd_TE1_Green_Tracer_545x39_AK_M";};
-player addBackpack "CUP_B_CivPack_WDL";
-player addHeadgear "CUP_H_SLA_Helmet";
+comment "Remove existing items";
+removeAllWeapons this;
+removeAllItems this;
+removeAllAssignedItems this;
+removeUniform this;
+removeVest this;
+removeBackpack this;
+removeHeadgear this;
+removeGoggles this;
 
-player addWeapon "CUP_arifle_AK107";
-for "_i" from 1 to 10 do {player addItemToBackpack "CUP_30Rnd_545x39_AK_M";};
+comment "Add containers";
+this forceAddUniform "rhsgref_uniform_ttsko_forest";
+for "_i" from 1 to 2 do {this addItemToUniform "FirstAidKit";};
+for "_i" from 1 to 4 do {this addItemToUniform "SmokeShell";};
+this addVest "rhsgref_6b23_ttsko_forest_rifleman";
+for "_i" from 1 to 3 do {this addItemToVest "rhs_30Rnd_545x39_AK";};
+this addBackpack "rhs_assault_umbts";
+this addHeadgear "rhsgref_6b27m_ttsko_forest";
 
-if (s_loadout_radio != 3) then {
-    player linkItem "ItemRadio";
-};
-player addWeapon "Binocular";
-if (s_loadout_map != 3) then {
-    player linkItem "ItemMap";
-    if (s_loadout_gps != 3) then {player linkItem "ItemGPS";};
-};
-player linkItem "ItemCompass";
-player linkItem "ItemWatch";
+comment "Add weapons";
+this addWeapon "rhs_weap_ak74m_gp25";
+this addPrimaryWeaponItem "rhs_acc_dtk";
+this addPrimaryWeaponItem "rhs_acc_1p29";
+this addWeapon "Binocular";
 
-missionNamespace setVariable ["phx_loadoutAssigned",true]; //Place this at the end of the loadout script so other scripts can tell when the player's loadout has been set.
+comment "Add items";
+this linkItem "ItemMap";
+this linkItem "ItemCompass";
+this linkItem "ItemWatch";
+this linkItem "tf_anprc148jem_5";
+this linkItem "ItemGPS";
+
+comment "Set identity";
+this setFace "AfricanHead_03";
+this setSpeaker "Male01GRE";

@@ -7,16 +7,16 @@ removeBackpack player;
 removeHeadgear player;
 removeGoggles player;
 
-player forceAddUniform "CUP_U_O_CHDKZ_Kam_02";
+player forceAddUniform "rhsgref_uniform_ttsko_forest";
 for "_i" from 1 to 2 do {player addItemToUniform "FirstAidKit";};
-player addVest "CUP_V_BAF_Osprey_Mk2_DPM_Scout";
+player addVest "rhsgref_6b23_ttsko_forest_rifleman";
 for "_i" from 1 to 2 do {player addItemToVest "HandGrenade";};
 for "_i" from 1 to 4 do {player addItemToVest "SmokeShell";};
-player addBackpack "CUP_B_CivPack_WDL";
-for "_i" from 1 to 3 do {player addItemToBackpack "CUP_100Rnd_TE4_LRT4_762x54_PK_Tracer_Green_M";};
-player addHeadgear "CUP_H_SLA_Helmet";
+player addBackpack "rhs_assault_umbts";
+for "_i" from 1 to 3 do {player addItemToBackpack "rhs_100Rnd_762x54mmR";};
+player addHeadgear "rhsgref_6b27m_ttsko_forest";
 
-player addWeapon "CUP_lmg_PKM";
+player addWeapon "rhs_weap_pkm";
 removeAllPrimaryWeaponItems player;
 
 if (s_loadout_map == 0) then {

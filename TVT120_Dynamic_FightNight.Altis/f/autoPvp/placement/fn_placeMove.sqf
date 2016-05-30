@@ -5,7 +5,7 @@ if (!hasInterface) exitWith {};
 [{
     params ["_args", "_handle"];
 
-    if (!isNil "phx_auto_foundPositions" && {!isNil "phx_auto_preStartLocationsFound"} && {!isNil "phx_auto_teamStarts"} && {!isNil "phx_auto_centerLocation"}) then {
+    if (!isNil "phx_auto_foundPositions" && {!isNil "phx_auto_preStartLocationsFound"} && {!isNil "phx_auto_teamStarts"} && {!isNil "phx_auto_centerLocation"} && {!isNil "phx_auto_westPreStart"} && {!isNil "phx_auto_eastPreStart"}) then {
         [_handle] call CBA_fnc_removePerFrameHandler;
 
         // Reset this variable so that the server is required to reinitialize it when changing battlefields.

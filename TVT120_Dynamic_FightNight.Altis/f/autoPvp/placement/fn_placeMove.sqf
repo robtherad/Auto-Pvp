@@ -1,5 +1,8 @@
+/*
+Waits until the required variables are recieved from the server and then places the player in the correct spot.
 
-// Adds a CBA PFH that waits until related variables are initialized before moving the player.
+Runs on clients.
+*/
 if (!hasInterface) exitWith {};
 
 [{
@@ -115,18 +118,21 @@ if (!hasInterface) exitWith {};
         // Finished Moving
         phx_placeMoveRunning = nil;
 
-        // Add a PFH that will pop up a warning for the player
-        [{
-            params ["_args", "_handle"];
-            if (time > 0 && {phx_safeStartEnabled}) then {
-                titleText [
-                "Your team is currently located at it's staging area which is marked on the map.
-                \nAfter safestart is over you will be automatically teleported to your team's starting area within the AO.
-                \nYou will arrive there in the same formation that you arrived in when you got here."
-                , "PLAIN DOWN", 2];
-                [_handle] call CBA_fnc_removePerFrameHandler;
-            };
-        }, 2, []] call CBA_fnc_addPerFrameHandler;
+        if (!isNil "phx_auto_clientMovedHintAdded") then {
+            phx_auto_clientMovedHintAdded = true;
+            // Add a PFH that will pop up a warning for the player
+            [{
+                params ["_args", "_handle"];
+                if (time > 0 && {phx_safeStartEnabled}) then {
+                    titleText [
+                    "Your team is currently located at it's staging area which is marked on the map.
+                    \nAfter safestart is over you will be automatically teleported to your team's starting area within the AO.
+                    \nYou will arrive there in the same formation that you arrived in when you got here."
+                    , "PLAIN DOWN", 2];
+                    [_handle] call CBA_fnc_removePerFrameHandler;
+                };
+            }, 2, []] call CBA_fnc_addPerFrameHandler;
+        };
         
     };
 }, 0, []] call CBA_fnc_addPerFrameHandler;

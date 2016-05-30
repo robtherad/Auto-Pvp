@@ -1,5 +1,7 @@
 /*
-Randomly generate coordinates until one is found that is reasonably flat and not on water.
+Randomly generate coordinates until one is found that doesn't have any obstacles and is not on the water.
+
+Runs on server.
 */
 private _flatEmptyArray = param [0];
 

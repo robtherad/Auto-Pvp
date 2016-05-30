@@ -1,5 +1,7 @@
 /*
-Creates sectors and then adds a CBA PFH to poll them.
+Creates sector(s) and then adds a PFH to poll them every ~10 seconds for changes..
+
+Runs on server.
 */
 if (!isServer) exitWith {};
 

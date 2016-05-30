@@ -1,5 +1,7 @@
 /*
 Activates other functions that need to happen after the battlefield has been decided.
+
+Runs on server.
 */
 if (!isServer) exitWith {};
 

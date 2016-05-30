@@ -1,4 +1,8 @@
-// Shades out the map outside of the AO. Also creates the marker used for the mission boundary.
+/*
+Creates a square around the AO and grays out the area around it. Based on the BIS module.
+
+Runs on server.
+*/
 if (!isServer) exitWith {};
 
 if (!isNil "phx_coveredMap") then {

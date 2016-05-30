@@ -1,6 +1,8 @@
 /*
 Initializes settings related to autoPvp and starts related logic loop.
 The PFH finds a suitable location for a battle to take place and then makes calls to other functions.
+
+Runs on server.
 */
 if (!isServer) exitWith {};
 

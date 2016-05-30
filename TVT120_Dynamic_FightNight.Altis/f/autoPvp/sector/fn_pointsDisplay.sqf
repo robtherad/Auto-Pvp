@@ -1,3 +1,9 @@
+/*
+Initializes the settings for and then adds a PFH to handle displaying the capture time remaining in the bottom right corner of client's screens.
+
+Runs on clients.
+*/
+
 if (!hasInterface) exitWith {};
 
 // Make sure the sector control script has been running long enough

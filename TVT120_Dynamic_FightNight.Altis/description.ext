@@ -20,7 +20,7 @@ class CfgFunctions {
         };
         #include "f\spect\functions.hpp"
     };
-    class phx {
+    class PHX {
         #include "f\functions.hpp"
     };
 };

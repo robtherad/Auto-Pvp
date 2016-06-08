@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={11600.491,35.801708,11965.888};
-		dir[]={0.5192697,-0.34262437,0.78307569};
-		up[]={0.18945643,0.93932205,0.28571427};
-		aside[]={0.83354133,-4.9385999e-006,-0.55273163};
+		pos[]={12884.582,105.28676,13409.179};
+		dir[]={0.32368401,-0.42586794,0.84504747};
+		up[]={0.15239315,0.9046061,0.39785811};
+		aside[]={0.93397808,-6.4550695e-006,-0.35775301};
 	};
 };
 binarizationWanted=0;
@@ -37,7 +37,7 @@ class AddonsMetaData
 {
 	class List
 	{
-		items=7;
+		items=6;
 		class Item0
 		{
 			className="task_force_radio_items";
@@ -59,24 +59,19 @@ class AddonsMetaData
 		};
 		class Item3
 		{
-			className="cba_xeh";
-			name="cba_xeh";
-		};
-		class Item4
-		{
 			className="A3_Characters_F";
 			name="Arma 3 Alpha - Characters and Clothing";
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
 		};
-		class Item5
+		class Item4
 		{
 			className="A3_Characters_F_Mark";
 			name="Arma 3 Marksmen - Characters and Clothing";
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
 		};
-		class Item6
+		class Item5
 		{
 			className="A3_Data_F_Curator";
 			name="Arma 3 Zeus Update - Main Configuration";
@@ -299,12 +294,13 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={12905.62,26.331078,13475.121};
+				position[]={12905.62,26.331112,13475.121};
 			};
+			isPlayer=1;
 			isPlayable=1;
 			id=165;
 			type="VirtualSpectator_F";
-			atlOffset=-3.6239624e-005;
+			atlOffset=-1.9073486e-006;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -1887,8 +1883,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={11609.216,23.562794,11983.255};
-						angles[]={0.0039967569,6.2755275,6.2778587};
+						position[]={11609.216,23.562792,11983.255};
+						angles[]={0.0039968039,6.2755232,6.2778621};
 					};
 					side="East";
 					flags=6;
@@ -1901,6 +1897,30 @@ class Mission
 					};
 					id=265;
 					type="O_officer_F";
+					atlOffset=-1.9073486e-006;
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.97000003;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -1970,6 +1990,7 @@ class Mission
 			{
 			};
 			id=264;
+			atlOffset=-1.9073486e-006;
 		};
 		class Item20
 		{

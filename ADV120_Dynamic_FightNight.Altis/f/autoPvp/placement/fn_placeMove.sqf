@@ -7,8 +7,61 @@ if (!hasInterface) exitWith {};
 
 [{
     params ["_args", "_handle"];
+    
+    if ((side group player) isEqualTo sideLogic && {!isNil "phx_auto_foundPositions"} && {!isNil "phx_auto_preStartLocationsFound"} && {!isNil "phx_auto_teamStarts"} && {!isNil "phx_auto_centerLocation"} && {!isNil "phx_auto_westPreStart"} && {!isNil "phx_auto_eastPreStart"}) then {
+        [_handle] call CBA_fnc_removePerFrameHandler;
+        
+        // Reset this variable so that the server is required to reinitialize it when changing battlefields.
+        phx_auto_foundPositions = nil;
+        
+        if (!isNil "phx_placeMoveRunning") exitWith {};
+        phx_placeMoveRunning = true;
+        
+        if (!isNil "phx_rs_markerArray") then {
+            {
+                deleteMarker _x;
+            } forEach phx_rs_markerArray;
+            phx_rs_markerArray = [];
+        } else {
+            phx_rs_markerArray = [];
+        };
+        
+        // Prestarts
+        _marker = createMarkerLocal ["phx_rs_spectWestMark",phx_auto_teamStarts select 0];
+        _marker setMarkerShapeLocal "ICON";
+        _marker setMarkerColorLocal "ColorBlack";
+        _marker setMarkerTypeLocal "hd_dot";
+        _marker setMarkerTextLocal "BLUFOR Start";
+        phx_rs_markerArray pushBack _marker;
 
-    if (!isNil "phx_auto_foundPositions" && {!isNil "phx_auto_preStartLocationsFound"} && {!isNil "phx_auto_teamStarts"} && {!isNil "phx_auto_centerLocation"} && {!isNil "phx_auto_westPreStart"} && {!isNil "phx_auto_eastPreStart"}) then {
+        _marker = createMarkerLocal ["phx_rs_spectEastMark",phx_auto_teamStarts select 1];
+        _marker setMarkerShapeLocal "ICON";
+        _marker setMarkerColorLocal "ColorBlack";
+        _marker setMarkerTypeLocal "hd_dot";
+        _marker setMarkerTextLocal "OPFOR Start";
+        phx_rs_markerArray pushBack _marker;
+        
+         // Regular starts
+        _marker = createMarkerLocal ["phx_rs_spectWestMark2",phx_auto_westPreStart];
+        _marker setMarkerShapeLocal "ICON";
+        _marker setMarkerColorLocal "ColorBlack";
+        _marker setMarkerTypeLocal "hd_dot";
+        _marker setMarkerTextLocal "BLUFOR Staging Area";
+        phx_rs_markerArray pushBack _marker;
+        
+        _marker = createMarkerLocal ["phx_rs_spectEastMark2",phx_auto_eastPreStart];
+        _marker setMarkerShapeLocal "ICON";
+        _marker setMarkerColorLocal "ColorBlack";
+        _marker setMarkerTypeLocal "hd_dot";
+        _marker setMarkerTextLocal "OPFOR Staging Area";
+        phx_rs_markerArray pushBack _marker;
+        
+        // Finished Moving
+        phx_placeMoveRunning = nil;
+        
+    };
+    
+    if (!((side group player) isEqualTo sideLogic) && {!isNil "phx_auto_preStartLocationsFound"} && {!isNil "phx_auto_teamStarts"} && {!isNil "phx_auto_centerLocation"} && {!isNil "phx_auto_westPreStart"} && {!isNil "phx_auto_eastPreStart"} && {!isNil "phx_auto_foundPositions"}) then {
         [_handle] call CBA_fnc_removePerFrameHandler;
 
         // Reset this variable so that the server is required to reinitialize it when changing battlefields.

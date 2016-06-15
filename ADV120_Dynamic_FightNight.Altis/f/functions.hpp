@@ -4,6 +4,7 @@ class core {
     class core_mpKilled{};
     class core_showTags{};
     class core_addRatingEH{postInit = 1;};
+    class core_addScoreEH{postInit = 1;};
     class core_playerBoundsCheck{};
     class core_setDate{postInit = 1;};
     class core_setWeather{postInit = 1;};
@@ -42,6 +43,9 @@ class misc {
     class _hintThenClear{};
     class serverJIP{postInit = 1;};
     class clientJIP{postInit = 1;};
+    class disableCSpect{};
+    class disableCJIP{};
+    class disableCollisions{};
 };
 class autoPvp {
     file = "f\autoPvp";

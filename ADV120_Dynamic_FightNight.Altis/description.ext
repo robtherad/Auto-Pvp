@@ -1,7 +1,6 @@
 author = "robtherad";
 onLoadName = "Dynamic Fight Night";
 OnLoadMission = "Randomly generated PVP battlefields on Altis.";
-// loadScreen =  "images\intro.jpg";
 
 #include "description\definitions.hpp"
 #include "description\cfgNotifications.hpp"
@@ -9,6 +8,7 @@ OnLoadMission = "Randomly generated PVP battlefields on Altis.";
 #include "description\cfgRespawnTemplates.hpp"
 #include "description\cfgDebriefingSections.hpp"
 #include "description\cfgEventHandlers.hpp"
+#include "description\ACESettings.hpp"
 
 #include "f\spect\config.hpp"
 class CfgFunctions {

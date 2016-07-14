@@ -11,7 +11,6 @@ _generateORBAT = {
     // Loop through the group, print out group ID, leader name and medics if present
     {
         if !((count units _x) isEqualTo 0) then {
-            waitUntil {_x getVariable ["phx_groupIDSet",false]};
             // Don't apply leading line breaks to first group.
             private _groupSize = _x getVariable ["phx_gps_groupSize",0];
             private _name = groupID _x;
@@ -101,11 +100,11 @@ _generateORBAT = {
                 };
                 if (getNumber (configFile >> "CfgVehicles" >> typeOf _x >> "attendant") isEqualTo 1) then {
                     private _colorUsed = _color;
-                    if (player == _x) then {_colorUsed = _highlightColor};
+                    if (player isEqualTo _x) then {_colorUsed = _highlightColor};
                     _groupString = _groupString + format["<font size='12'>%2<font color='%3'>%1</font> [M]</font>",name _x,_leftPad,_colorUsed];
                 } else {
                     private _colorUsed = _color;
-                    if (player == _x) then {_colorUsed = _highlightColor};
+                    if (player isEqualTo _x) then {_colorUsed = _highlightColor};
                     _groupString = _groupString + format["<font size='12'>%2<font color='%3'>%1</font></font>",name _x,_leftPad,_colorUsed];
                 };
             } forEach units _x;
@@ -119,11 +118,13 @@ _generateORBAT = {
     _functionText
 };
 
+//----------------------------------------------------------------------------------------------------
 private _side = side group player;
 private _orbatText = "<br />NOTE: The ORBAT below is only accurate at mission start.<br />
 <br />";
 
-waitUntil { !isNil "phx_playerBaseChannel"; };
+waitUntil { !isNil "phx_groupIDset" };
+waitUntil { !isNil "phx_playerBaseChannel" };
 
 phx_colorArrayBase = [
     "#8080FF", // light blue
@@ -156,7 +157,23 @@ private _templateGroupList = [
     };
 } forEach allGroups;
 
+// Generate ORBAT text for template groups
 private _templateText = [_templateGroups] call _generateORBAT;
+
+// Use next color in the chain when switching between template and non-template groups
+if (isNil "phx_orbat_lastUsedColor") then {
+    phx_orbat_lastUsedColor = ["#FFFFFF"];
+};
+phx_colorArray = (phx_colorArrayBase - phx_colorArrayUsed);
+if (count phx_colorArray isEqualTo 0) then {
+    phx_colorArrayUsed = [];
+    phx_colorArray = phx_colorArrayBase;
+};
+private _color = phx_colorArray select 0;
+phx_colorArrayUsed pushBack _color;
+phx_orbat_lastUsedColor = [_color];
+
+// Generate ORBAT text for non-template groups
 _orbatText = _orbatText + _templateText;
 private _groupText = "";
 if !(_groups isEqualTo []) then {

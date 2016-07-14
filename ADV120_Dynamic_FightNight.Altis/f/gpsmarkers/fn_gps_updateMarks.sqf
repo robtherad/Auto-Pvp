@@ -45,14 +45,14 @@ fn_phx_updateVehMarks={
                     
                     //If _senior isn't group leader make sure group leader has no gps.
                     if (_senior != leader _group) then {
-                        if ("ItemGPS" in (assignedItems (leader _group)) && (alive (leader _group)) && (group (leader _group)) isEqualTo _group ) then {
+                        if ("ItemGPS" in (assignedItems (leader _group)) && {alive (leader _group)} && {(group (leader _group)) isEqualTo _group} ) then {
                             _senior = leader _group;
                             _group setVariable ["phx_seniorGPS",(leader _group)];
                         };
                     };
                     
                     //_senior = _group getVariable ["phx_seniorGPS",objNull]; // put this here or _senior won't update for the below code block
-                    if (("ItemGPS" in (assignedItems _unit)) && ((isNull _senior) || (_senior == _unit))) then { //no reason to run this stuff if _unit isn't the most senior member
+                    if (("ItemGPS" in (assignedItems _unit)) && {(isNull _senior) || (_senior isEqualTo _unit)}) then { //no reason to run this stuff if _unit isn't the most senior member
                         if (isNull _senior) then {
                             _group setVariable ["phx_seniorGPS",_unit]; //no better match than _unit
                         };
@@ -65,7 +65,7 @@ fn_phx_updateVehMarks={
                                 (vehicle _unit) setVariable ["phx_UnitInside",_string];
                                 (vehicle _unit) setVariable ["phx_LastInside",_groupIdent];
                             } else {
-                                (vehicle _unit) setVariable ["phx_UnitInside",_groupIdent];
+                                (vehicle _unit) setVariable ["phx_UnitInside",(groupID _group)];
                                 (vehicle _unit) setVariable ["phx_LastInside",_groupIdent];
                             };
                             if (!isNil "phx_sideVehArray") then {

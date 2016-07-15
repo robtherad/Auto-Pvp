@@ -5,6 +5,6 @@
 */
 
 phx_loadout_uniform = "U_B_CombatUniform_mcam";
-phx_loadout_vest = "V_PlateCarrier1_rgr";
+phx_loadout_vest = "V_Chestrig_khk";
 phx_loadout_backpack = "B_TacticalPack_mcamo";
 phx_loadout_headgear = "H_HelmetB_sand";
